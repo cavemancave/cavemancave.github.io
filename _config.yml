@@ -16,12 +16,12 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Caveman Cave"
+title                    : "Cavemancave"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "cavemancave"
 description              : "An amazing website."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://cavemancave.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "cavemancave/cavemancave.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -45,9 +45,9 @@ comments:
     issue_term           : # "pathname" (default)
   giscus:
     repo_id              : "R_kgDOHafRcQ"
-    category_name        : # Full text name of the category
-    category_id          : # Shown during giscus setup at https://giscus.app
-    discussion_term      : "og:titile" # "pathname" (default), "url", "title", "og:title"
+    category_name        : "Announcements"
+    category_id          : "DIC_kwDOHafRcc4CPW5o"
+    discussion_term      : "og:title" # "pathname" (default), "url", "title", "og:title"
     reactions_enabled    : '1'# '1' for enabled (default), '0' for disabled
     theme                : "preferred_color_scheme" # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
   staticman:
@@ -59,8 +59,8 @@ reCaptcha:
 atom_feed:
   path                   : # blank (default) uses feed.xml
   hide                   : # true, false (default)
-search                   : # true, false (default)
-search_full_content      : # true, false (default)
+search                   : true # true, false (default)
+search_full_content      : true # true, false (default)
 search_provider          : # lunr (default), algolia, google
 lunr:
   search_within_pages    : # true, false (default)
@@ -96,7 +96,7 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google" # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
     tracking_id          :
     anonymize_ip         : # true, false (default)
@@ -104,10 +104,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "Cavemancave"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
+  bio              : "The best is like water."
+  location         : "HangZhou"
   email            :
   links:
     - label: "Email"
