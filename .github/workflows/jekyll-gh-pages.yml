@@ -56,7 +56,9 @@ jobs:
     needs: deploy
     steps:
       - name: Tar artifacts
-        run: zip "$RUNNER_TEMP/artifact.zip" "$RUNNER_TEMP/artifact.tar"
+        run: |
+        ls -la "$RUNNER_TEMP/"
+        zip -r "$RUNNER_TEMP/artifact.zip" "$RUNNER_TEMP/artifact.tar"
       - name: Tar artifacts
         uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
         env:
