@@ -56,10 +56,34 @@ jobs:
     needs: deploy
     steps:
       - name: Tar artifacts
-      - run:  tar -zxvf my_artifacts.tar.gz ./
-      - name: Deploy artifacts
-      - run: |
-          scp 
-          ssh ${{ secrets.SSH_KEY }} test.sh
-           
+        run: zip "$RUNNER_TEMP/artifact.zip" "$RUNNER_TEMP/artifact.tar"
+      - name: Tar artifacts
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        env:
+          WELCOME: "ssh scp ssh pipelines"
+          LASTSSH: "Doing something after copying"
+        with:
+          host: ${{ secrets.DC_HOST }}
+          user: ${{ secrets.DC_USER }}
+          pass: ${{ secrets.DC_PASS }}
+          port: ${{ secrets.DC_PORT }}
+          connect_timeout: 10s
+          first_ssh: |
+            caddy stop
+            rm -rf /root/www/cavemancave.github.io
+            ls -la  \necho $WELCOME 
+            mkdir -p /root/www/cavemancave.github.io
+          scp: |
+            "$RUNNER_TEMP/artifact.zip" => /root/www/cavemancave.github.io
+            ./Caddyfile => /root/www/cavemancave.github.io
+          last_ssh: |
+            echo $LASTSSH 
+            cd /root/www/cavemancave.github.io
+            ls -la
+            unzip artifact.zip
+            tar -xvf artifact.tar
+            cp Caddyfile _site/
+            cd _site
+            caddy start
+
 
