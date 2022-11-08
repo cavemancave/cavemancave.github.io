@@ -1,5 +1,5 @@
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+name: Deploy Jekyll site to my own server
 
 on:
   # Runs on pushes targeting the default branch
@@ -9,20 +9,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
-  # Build job
-  build:
+  rsync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,16 +25,15 @@ jobs:
           source: ./
           destination: ./_site
           
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        
       - name: "Deploy to Staging" 
         uses: up9cloud/action-rsync@v1.3
         env:
           HOST: ${{secrets.DC_HOST}}
           PORT: ${{secrets.DC_PORT}}
           USER: ${{secrets.DC_USER}}
+          # private key
           KEY: ${{secrets.DC_PASS}}
           TARGET: /root/www/
-
+          RUN_SCRIPT_ON: remote
+          POST_SCRIPT: "cd /root/www/_site/; caddy reload"
         
