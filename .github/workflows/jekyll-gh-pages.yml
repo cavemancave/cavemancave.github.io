@@ -43,12 +43,10 @@ jobs:
       - name: "Deploy to Staging" 
         uses: up9cloud/action-rsync@v1.3
         env:
-          HOST: www.cavemancave.xyz
-          PORT: 29037
-          USER: root
+          HOST: ${{secrets.DC_HOST}}
+          PORT: ${{secrets.DC_PORT}}
+          USER: ${{secrets.DC_USER}}
           KEY: ${{secrets.DC_PASS}}
           TARGET: /root/www/
-          RUN_SCRIPT_ON: remote
-          POST_SCRIPT: "cd /root/www/_site/; caddy reload"
 
         
