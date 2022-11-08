@@ -13,9 +13,18 @@ jobs:
   rsync:
     runs-on: ubuntu-latest
     steps:
-      # Must checkout first, otherwise would get empty folder, see https://github.com/actions/checkout
-      - uses: actions/checkout@v2
-      
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+        
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+          
       - name: "Deploy to Staging" 
         uses: up9cloud/action-rsync@v1.3
         env:
@@ -24,5 +33,6 @@ jobs:
           USER: ${{secrets.DC_USER}}
           KEY: ${{secrets.DC_PASS}}
           TARGET: /root/www/
-
+          RUN_SCRIPT_ON: remote
+          POST_SCRIPT: "cd /root/www/_site/; caddy reload"
         
