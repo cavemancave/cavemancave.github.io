@@ -1,12 +1,18 @@
-将github原有的action会执行jekyll build构建出_site目录，利用rsync同步推送到自己的服务器上
-步骤：
+# 如何将github pages构建结果部署到自己的服务器上
+## 简述
+github pages默认会有一个Actions: pages-build-deployment, 观察源码发现此action会执行jekyll build构建出_site目录，只要把这个目录同步到自己的服务器上，再拉起http服务，就可以在自己的服务器上看到静态网页了，同步目录使用rsync命令，因为scp或者sftp每次都会重复拷贝，比较耗时
+## 步骤：
 1. 准备服务器的密钥登录
 
 2. 添加Secerts
+- DC_HOST 是服务器域名或者地址
+- DC_PORT 是ssh登录服务器的端口
+- DC_USER 是ssh登录服务器的用户名
+- DC_PASS 是ssh登录服务器的私钥
 
-3. 添加step
+3. 添加Action
 
-
+## 参考代码
 ```yml
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
 name: Deploy Jekyll site to my own server

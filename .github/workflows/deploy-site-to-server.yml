@@ -35,5 +35,5 @@ jobs:
           KEY: ${{secrets.DC_PASS}}
           TARGET: /root/www/
           RUN_SCRIPT_ON: remote
-          POST_SCRIPT: "cd /root/www/_site/; caddy reload"
+          POST_SCRIPT: "cd /root/www/_site/; caddy reload; ./root/start_trojan.sh"
         
