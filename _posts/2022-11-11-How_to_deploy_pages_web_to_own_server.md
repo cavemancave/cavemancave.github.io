@@ -20,7 +20,7 @@ github pages默认会有一个Actions: pages-build-deployment, 观察源码发�
 - DC_PORT 是ssh登录服务器的端口
 - DC_USER 是ssh登录服务器的用户名
 - DC_PASS 是ssh登录服务器的私钥
-![图 1](../images/blog/20221113-190629CreateSecerts.png)  
+![图 1](/images/blog/20221113-190629CreateSecerts.png)  
 
 3. 添加Action
 
