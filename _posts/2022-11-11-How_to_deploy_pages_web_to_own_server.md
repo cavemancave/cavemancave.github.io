@@ -1,3 +1,10 @@
+---
+layout: single
+title:  "如何将Github Pages构建结果部署到自己的服务器上"
+date:   2022-11- 17:39:53 +0800
+categories: howto www 
+---
+
 # 如何将github pages构建结果部署到自己的服务器上
 ## 简述
 github pages默认会有一个Actions: pages-build-deployment, 观察源码发现此action会执行jekyll build构建出_site目录，只要把这个目录同步到自己的服务器上，再拉起http服务，就可以在自己的服务器上看到静态网页了，同步目录使用rsync命令，因为scp或者sftp每次都会重复拷贝，比较耗时
