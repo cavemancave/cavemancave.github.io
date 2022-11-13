@@ -3,12 +3,17 @@
 github pages默认会有一个Actions: pages-build-deployment, 观察源码发现此action会执行jekyll build构建出_site目录，只要把这个目录同步到自己的服务器上，再拉起http服务，就可以在自己的服务器上看到静态网页了，同步目录使用rsync命令，因为scp或者sftp每次都会重复拷贝，比较耗时
 ## 步骤：
 1. 准备服务器的密钥登录
+- ssh-key-gen生成秘钥
+- ssh-copy-id user@serverIp拷贝到服务器
+- cat ~/.ssh/id_rsa 查看私钥
 
 2. 添加Secerts
+项目页 -> Settings -> Security -> Secrets -> Actions -> New repository secret添加4个密文
 - DC_HOST 是服务器域名或者地址
 - DC_PORT 是ssh登录服务器的端口
 - DC_USER 是ssh登录服务器的用户名
 - DC_PASS 是ssh登录服务器的私钥
+![图 1](../images/blog/20221113-190629CreateSecerts.png)  
 
 3. 添加Action
 
