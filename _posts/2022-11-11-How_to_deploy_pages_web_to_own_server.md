@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "如何将Github Pages构建结果部署到自己的服务器上"
-date:   2022-11- 17:39:53 +0800
+date:   2022-11-11 17:39:53 +0800
 categories: howto www 
 ---
 
