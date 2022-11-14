@@ -1,0 +1,45 @@
+# Build and upload release When tag v*.*.*
+name: Release Build
+
+on:
+  push:
+  tags:
+    - "v*.*.*"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  rsync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+        
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+        
+      - name: Checkout tag
+        run: |
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          tag_name="${GITHUB_REF##*/}"
+          echo Tag $tag_name
+          git checkout $tag_name
+          echo "TAG_NAME=${tag_name}" >> $GITHUB_ENV  
+          zip -r site.zip _site
+          
+      - name: Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.TAG_NAME }}
+          file: ./site.zip
+          file_glob: true
+          prerelease: true
