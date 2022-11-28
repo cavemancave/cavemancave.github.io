@@ -17,27 +17,66 @@ pong
 
 # 打印逻辑
 利用clear清屏再输出，但是必须在linux上
+
+## 进展
+221128 命令行无法获取按键按下的事件，必须回车后才能拿到按键，需要切换到GUI继续测试
 ```java
 
-package pongOne;
 import java.util.Scanner;
 
 
-public class PongOne {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		Scanner input = new Scanner (System.in);
-		while(true) {
-			int USER =  input.nextInt();
-			
-		}
-		
-		if(USER == 1)
-		System.out.println("\033[H\033[2J");
+public class Pong {
+	public int fieldLen;
+	public int racketLen;
+	public int racketPos;
+	public Pong(int fieldLen, int racketLen, int racketPos) {
+		this.fieldLen = fieldLen;
+		this.racketLen = racketLen;
+		this.racketPos = racketPos;
 	}
-
+	public void RacketUp() {
+		if(this.racketPos<=0) {
+			return;
+		}
+		this.racketPos--;
+	}
+	public void RacketDown() {
+		if((this.racketPos+this.racketLen)>=this.fieldLen) {
+			return;
+		}
+		this.racketPos++;
+	}
+	public void printRacket() {
+		for(int i=0;i<racketPos;i++) {
+			System.out.println("|");
+		}
+		for(int i=racketPos;i<racketPos+racketLen;i++) {
+			System.out.println("||");
+		}
+		for(int i=racketPos+racketLen;i<fieldLen;i++) {
+			System.out.println("|");
+		}
+	}
+	public static void main(String[] args) {
+		Pong pong = new Pong(10, 1, 5);
+        Scanner input = new Scanner(System.in);
+    	while(true) {
+    		int number = input.nextInt();
+            System.out.println(number);
+            if(number==9) {
+            	break;
+            }
+            if(number==1) {
+            	pong.RacketUp();
+            }else {
+            	pong.RacketDown();
+            }
+            pong.printRacket();
+    	}
+        
+        input.close();
+	}
 }
+
 
 ```
