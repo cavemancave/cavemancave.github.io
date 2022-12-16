@@ -5,13 +5,14 @@ date:   2022-11-11 17:39:53 +0800
 categories: howto
 ---
 
-# Server
-## 服务器
-1. 准备一个VPS，ip地址12.345.345.345
-2. 申请域名abc.com，新增一条A记录
-`A	www	12.345.345.345	600`
-## Caddy配置
-登陆VPS，新建Caddyfile, 在端口1234上拉起https服务
+# Server 
+## 服务器  
+1. 准备一个VPS，ip地址12.345.345.345  
+2. 申请域名abc.com，新增一条A记录  
+`A	www	12.345.345.345	600`  
+
+## Caddy配置  
+登陆VPS，新建Caddyfile, 在端口1234上拉起https服务  
 ```txt
 cat Caddyfile 
 www.abc.com:1234 {
@@ -26,9 +27,9 @@ www.abc.com:80 {
 访问https://www.abc.com:1234，应该成功
 访问http://www.abc.com:80，应该成功
 访问https://www.abc.com，应该失败
-## trojan-go 配置
 
-/root/compose.yaml
+## trojan-go 配置  
+/root/compose.yaml  
 ```yaml
 services:
   trojan-go:
@@ -38,11 +39,10 @@ services:
     volumes:
       - /root:/root/
       - /root/trojan-go:/etc/trojan-go
-
 ```
-docker compose up
+`docker compose up `   
 
-/root/trojan-go/config.json
+/root/trojan-go/config.json  
 ```json
 {
     "run_type": "server",
@@ -68,9 +68,9 @@ docker compose up
     }
 }
 ```
-访问https://www.abc.com，应该成功显示网页
-## 客户端
-1. 
+访问https://www.abc.com，应该成功显示网页  
+
+# 客户端
 
 ```json
  config.json 
@@ -111,24 +111,24 @@ docker compose up
 }
 ```
 
-http_proxy="socks://127.0.0.1:1080"; curl www.google.com
+http_proxy="socks5://127.0.0.1:1080"; curl www.google.com  
 
-## NAS
-
-新建2个文件夹
-/home/config/trojan-go/config.json
-/home/config/privoxy/config.json
+# NAS  
+新建2个文件夹  
+/home/config/trojan-go/config.json  
+/home/config/privoxy/config.json  
 ```json
 forward-socks5   /               0.0.0.0:1080 .
 listen-address 0.0.0.0:8118
 ```
-拉起2个容器
-拉起时映射2个文件
+拉起2个容器  
+拉起时映射2个文件  
 /home/config/trojan-go/config.json -> /etc/trojan-go/config.json
 /home/config/privoxy/config.json -> /etc/privoxy/config.json
 
-局域网代理都可以指向NAS
-socks5  192.168.0.5  1080
-http  192.168.0.5 8118
+局域网代理都可以指向NAS  
+socks5  192.168.0.5  1080  
+http  192.168.0.5 8118  
+
 ## 调试
-lsof -i :443 查看端口占用，杀掉进程
+lsof -i :443 查看端口占用，杀掉进程  
