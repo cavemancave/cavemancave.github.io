@@ -5,13 +5,17 @@ date:   2022-12-15 17:39:53 +0800
 categories: proxy
 ---
 
-# Server 
-## 服务器  
+[TOC]
+
+# 简介
+记录本次设置代理的过程  
+
+# 服务器  
 1. 准备一个VPS，ip地址12.345.345.345  
 2. 申请域名abc.com，新增一条A记录  
 `A	www	12.345.345.345	600`  
 
-## Caddy配置  
+# Caddy配置  
 登陆VPS，新建Caddyfile, 在端口1234上拉起https服务  
 ```txt
 cat Caddyfile 
@@ -28,7 +32,7 @@ www.abc.com:80 {
 访问http://www.abc.com:80，应该成功  
 访问https://www.abc.com，应该失败  
 
-## trojan-go 配置  
+# trojan-go 配置  
 /root/compose.yaml  
 ```yaml
 services:
@@ -130,5 +134,5 @@ listen-address 0.0.0.0:8118
 socks5  192.168.0.5  1080  
 http  192.168.0.5 8118  
 
-## 调试
+# 调试
 lsof -i :443 查看端口占用，杀掉进程  
