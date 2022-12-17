@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Setup proxy"
+title:  "代理折腾记录"
 date:   2022-12-15 17:39:53 +0800
 categories: proxy
 ---
