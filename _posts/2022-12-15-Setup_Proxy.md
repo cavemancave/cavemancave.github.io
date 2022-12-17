@@ -1,8 +1,8 @@
 ---
 layout: single
 title:  "Setup proxy"
-date:   2022-11-11 17:39:53 +0800
-categories: howto
+date:   2022-12-15 17:39:53 +0800
+categories: proxy
 ---
 
 # Server 
@@ -24,9 +24,9 @@ www.abc.com:80 {
 	file_server
 }
 ```
-访问https://www.abc.com:1234，应该成功
-访问http://www.abc.com:80，应该成功
-访问https://www.abc.com，应该失败
+访问https://www.abc.com:1234，应该成功  
+访问http://www.abc.com:80，应该成功  
+访问https://www.abc.com，应该失败  
 
 ## trojan-go 配置  
 /root/compose.yaml  
@@ -123,8 +123,8 @@ listen-address 0.0.0.0:8118
 ```
 拉起2个容器  
 拉起时映射2个文件  
-/home/config/trojan-go/config.json -> /etc/trojan-go/config.json
-/home/config/privoxy/config.json -> /etc/privoxy/config.json
+/home/config/trojan-go/config.json -> /etc/trojan-go/config.json  
+/home/config/privoxy/config.json -> /etc/privoxy/config.json  
 
 局域网代理都可以指向NAS  
 socks5  192.168.0.5  1080  
