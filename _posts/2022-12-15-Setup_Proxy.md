@@ -49,17 +49,9 @@ www.abc.com:80 {
             "your_password"
         ],
         "ssl": {
-            "cert": "/root/.local/share/caddy/certificates/acme-v02.api.    letsencrypt.org-directory/www.abc.com/www.abc.com.crt",
-            "key": "/root/.local/share/caddy/certificates/acme-v02.api. letsencrypt.org-directory/www.abc.com/www.abc.com.key",
+            "cert": "/root/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/www.abc.com/www.abc.com.crt",
+            "key": "/root/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/www.abc.com/www.abc.com.key",
         "fallback_port": 1234
-        },
-        "router": {
-            "enabled": true,
-            "block": [
-                "geoip:private"
-            ],
-            "geoip": "/root/trojan-go/geoip.dat",
-            "geosite": "/root/trojan-go/geosite.dat"
         }
     }
     ```
@@ -76,7 +68,7 @@ www.abc.com:80 {
           - /root:/root/
           - /root/trojan-go:/etc/trojan-go
     ```
-4. 执行`docker compose up `拉起容器   
+4. 执行`docker-compose up -d`拉起容器   
 5. 访问https://www.abc.com，应该成功显示网页  
 
 # 客户端
@@ -99,24 +91,6 @@ www.abc.com:80 {
         },
         "mux": {
             "enabled": true
-        },
-        "router": {
-            "enabled": false,
-            "bypass": [
-                "geoip:cn",
-                "geoip:private",
-                "geosite:cn",
-                "geosite:private"
-            ],
-            "block": [
-                "geosite:category-ads"
-            ],
-            "proxy": [
-                "geosite:geolocation-!cn"
-            ],
-            "default_policy": "proxy",
-            "geoip": "geoip.dat",
-            "geosite": "geosite.dat"
         }
     }
     ```
