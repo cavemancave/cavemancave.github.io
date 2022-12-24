@@ -114,7 +114,7 @@ p4gefault-trojan-go
 vimagick-privoxy  
 拉起时使用与DockerHost相同的网络，根据Entrypoint确定默认配置文件路径，各自映射配置文件  
 /home/config/trojan-go/config.json -> /etc/trojan-go/config.json  
-/home/config/privoxy/config.json -> /etc/privoxy/config.json  
+/home/config/privoxy/config.json -> /etc/privoxy/config  
 4. 局域网设备设置代理服务器为NAS  
 socks5  192.168.0.5  1080  
 http  192.168.0.5 8118  
