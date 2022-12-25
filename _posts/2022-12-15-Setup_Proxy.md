@@ -97,7 +97,7 @@ www.abc.com:80 {
     注意，如果想让局域网都可以使用socks代理，监听地址需要设置成0.0.0.0  
     router目前设置是false, 因为使用代理的设备的流量基本都是出海  
 2. 测试连接
-`http_proxy="socks5://127.0.0.1:1080"; curl www.google.com`  
+`curl --socks5-hostname localhost:1080 www.google.com`  
 
 # NAS局域网代理  
 1. 局域网内部分设备无法安装trojan客户端，只能配置http或者socks代理，考虑到功耗，暂由NAS长期打开trojan客户端，再向局域网提供socks代理，其他设备设置代理服务器为NAS的IP地址，端口1080。由privoxy提供http代理，端口8118。  
@@ -120,17 +120,18 @@ socks5  192.168.0.5  1080
 http  192.168.0.5 8118  
 
 # 调试
-lsof -i :443 查看端口占用，杀掉进程  
-通过log_file字段配置log文件，不带路径的话，就在容器根目录下，可以进容器查看。不过日志会不停增大，只在调试时打开  
-```bash
-taishan@taishanNAS:~$ sudo docker ps
-Password:
-CONTAINER ID   IMAGE                        COMMAND                  CREATED       STATUS        PORTS     NAMES
-4cf1d609f6e9   p4gefau1t/trojan-go:latest   "/usr/local/bin/troj…"   13 days ago   Up 24 hours             p4gefau1t-trojan-go1
-taishan@taishanNAS:~$ sudo docker exec -it 4cf1d609f6e9 sh
-/ # ls -l *.log
--rw-r--r--    1 root     root       1245002 Dec 17 14:11 trojan-go.log
-/ # tail  trojan-go.log
-[INFO]  2022/12/17 14:13:04 socks connection from 127.0.0.1:60526 metadata dauth-lp1.ndas.srv.nintendo.net:443
-```
-cat /proc/1/fd/1 应该可以查看stdout，不过目前测试没有输出。  
+1. lsof -i :443 查看端口占用，杀掉进程  
+2. 通过log_file字段配置log文件，不带路径的话，就在容器根目录下，可以进容器查看。不过日志会不停增大，只在调试时打开  
+    ```bash
+    taishan@taishanNAS:~$ sudo docker ps
+    Password:
+    CONTAINER ID   IMAGE                        COMMAND                  CREATED       STATUS        PORTS     NAMES
+    4cf1d609f6e9   p4gefau1t/trojan-go:latest   "/usr/local/bin/troj…"   13 days ago   Up 24 hours             p4gefau1t-trojan-go1
+    taishan@taishanNAS:~$ sudo docker exec -it 4cf1d609f6e9 sh
+    / # ls -l *.log
+    -rw-r--r--    1 root     root       1245002 Dec 17 14:11 trojan-go.log
+    / # tail  trojan-go.log
+    [INFO]  2022/12/17 14:13:04 socks connection from 127.0.0.1:60526 metadata dauth-lp1.ndas.srv.nintendo.net:443
+    ```
+3. cat /proc/1/fd/1 应该可以查看stdout，不过目前测试没有输出。  
+4. curl --socks5-hostname 可以让DNS在远端解析，避免本地DNS污染导致的连接失败
