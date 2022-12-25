@@ -101,10 +101,10 @@ www.abc.com:80 {
 
 # NAS局域网代理  
 1. 局域网内部分设备无法安装trojan客户端，只能配置http或者socks代理，考虑到功耗，暂由NAS长期打开trojan客户端，再向局域网提供socks代理，其他设备设置代理服务器为NAS的IP地址，端口1080。由privoxy提供http代理，端口8118。  
-2. 新建2个文件夹  
+2. 新建2个文件夹和文件  
     /home/config/trojan-go/config.json
     内容如上一节  
-    /home/config/privoxy/config.json  
+    /home/config/privoxy/config  
     ```json
     forward-socks5   /               0.0.0.0:1080 .
     listen-address 0.0.0.0:8118
@@ -114,7 +114,7 @@ p4gefault-trojan-go
 vimagick-privoxy  
 拉起时使用与DockerHost相同的网络，根据Entrypoint确定默认配置文件路径，各自映射配置文件  
 /home/config/trojan-go/config.json -> /etc/trojan-go/config.json  
-/home/config/privoxy/config.json -> /etc/privoxy/config  
+/home/config/privoxy/config -> /etc/privoxy/config  
 4. 局域网设备设置代理服务器为NAS  
 socks5  192.168.0.5  1080  
 http  192.168.0.5 8118  
