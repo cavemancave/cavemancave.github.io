@@ -110,14 +110,14 @@ www.abc.com:80 {
     listen-address 0.0.0.0:8118
     ```
 3. 拉起2个容器  
-p4gefault-trojan-go  
-vimagick-privoxy  
-拉起时使用与DockerHost相同的网络，根据Entrypoint确定默认配置文件路径，各自映射配置文件  
-/home/config/trojan-go/config.json -> /etc/trojan-go/config.json  
-/home/config/privoxy/config -> /etc/privoxy/config  
+    p4gefault-trojan-go  
+    vimagick-privoxy  
+    拉起时使用与DockerHost相同的网络，根据Entrypoint确定默认配置文件路径，各自映射配置文件  
+    /home/config/trojan-go/config.json -> /etc/trojan-go/config.json  
+    /home/config/privoxy/config -> /etc/privoxy/config  
 4. 局域网设备设置代理服务器为NAS  
-socks5  192.168.0.5  1080  
-http  192.168.0.5 8118  
+    socks5  192.168.0.5  1080  
+    http  192.168.0.5 8118  
 
 # 调试
 1. lsof -i :443 查看端口占用，杀掉进程  
