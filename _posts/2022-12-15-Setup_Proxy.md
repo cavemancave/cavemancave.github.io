@@ -94,7 +94,7 @@ www.abc.com:80 {
         }
     }
     ```
-    注意，如果想让局域网都可以使用socks代理，监听地址需要设置成0.0.0.0  
+    注意，如果想让局域网都可以使用socks代理，绑定地址local_addr需要设置成0.0.0.0  
     router目前设置是false, 因为使用代理的设备的流量基本都是出海  
 2. 测试连接
 `curl --socks5-hostname localhost:1080 www.google.com`  
