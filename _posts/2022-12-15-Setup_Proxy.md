@@ -101,7 +101,7 @@ www.abc.com:80 {
 
 # NAS局域网代理  
 1. 局域网内部分设备无法安装trojan客户端，只能配置http或者socks代理，考虑到功耗，暂由NAS长期打开trojan客户端，再向局域网提供socks代理，其他设备设置代理服务器为NAS的IP地址，端口1080。由privoxy提供http代理，端口8118。  
-2. 新建2个文件夹和文件  
+2. 在NAS上新建2个文件夹和文件  
     /home/config/trojan-go/config.json
     内容如上一节  
     /home/config/privoxy/config  
