@@ -30,6 +30,7 @@ www.abc.com:80 {
     file_server
 }
 ```
+caddy start 启动caddy，后台运行
 访问https://www.abc.com:1234，应该成功  
 访问http://www.abc.com:80，应该成功  
 访问https://www.abc.com，应该失败  
@@ -55,7 +56,6 @@ www.abc.com:80 {
         }
     }
     ```
-    caddy start 启动caddy，后台运行  
 3. 创建容器配置  
     /root/compose.yaml  
     ```yaml
