@@ -8,7 +8,7 @@ categories: android
 
 # 设备
 Xiaomi Mi 6  
-LineageOS 20  
+[LineageOS 20][1]   
 
 # App
 目前为止，测试到最好用的一个App是[Google Play - Astra Streaming Studio](https://play.google.com/store/apps/details?id=miv.astudio&hl=en_US&gl=US)  
