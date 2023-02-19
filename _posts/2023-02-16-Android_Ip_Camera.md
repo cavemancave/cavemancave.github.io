@@ -18,6 +18,7 @@ Xiaomi Mi 6
 本地PC安装VLC，媒体-》打开网络串流-》rtsp://192.168.0.30:5554->播放  
 测试码率和帧率如下  
 ```txt
+Xiaomi Mi 6 LineageOS 20
 Video encoder: H264 1280x720 17.2 fps
 Audio encoder: AAC 44kHz stereo
 Encoders bitrate: 2.9 Mbps / 2.4 Mbps
@@ -25,7 +26,15 @@ Outgoing bandwidth: 2.9 Mbps
 Sent data: 54.5 Mb
 Duration: 2 min. 40 sec.
 ```
-
+```txt
+Xiaomi Mi 10 Lite Zoom MIUI 13
+Video encoder: H264 1920x1080 30.2 fps
+Audio encoder: AAC 44kHz stereo
+Encoders bitrate: 7.7 Mbps / 6.2 Mbps
+Outgoing bandwidth: 7.7 Mbps
+Sent data: 47 Mb
+Duration: 54 sec.
+```
 # Reference
 [1]: <https://wiki.lineageos.org/devices/sagit/install> "LineageOS Wiki - Install LineageOS on sagit"
 [2]: <https://www.gumlet.com/learn/rtsp-vs-rtmp/#:~:text=RTSP%20is%20commonly%20used%20for,stored%20and%20delivered%20when%20needed.> "gumlet - A Comprehensive Overview of RTSP vs RTMP"
