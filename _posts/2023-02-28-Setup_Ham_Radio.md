@@ -1,8 +1,12 @@
 ---
+toc: true
+toc_sticky: true
 layout: single
 title:  "业余无线电折腾记录"
 date:   2023-02-28 17:39:53 +0800
 categories: radio
+description: 业余无线电折腾记录。
+keywords: ham, radio, 8800
 ---
 [TOC]
 
@@ -15,3 +19,6 @@ PC登录浙江政务服务网，（手机浙里办也可以进入，但是签章
 出厂编号，森海克斯要拆开电池
 15个工作日内
 呼号是8个工作日
+
+# 考试
+小程序 业余无线电工具集
