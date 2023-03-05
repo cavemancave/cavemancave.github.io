@@ -8,7 +8,6 @@ categories: android
 description: OpenWrt折腾记录。
 keywords: steam,android,ipcam
 ---
-[TOC]
 
 # 设备
 Xiaomi Mi 6  

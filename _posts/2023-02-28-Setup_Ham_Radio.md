@@ -8,7 +8,6 @@ categories: radio
 description: 业余无线电折腾记录。
 keywords: ham, radio, 8800
 ---
-[TOC]
 
 # 手台购买
 浙江省申请设站时，只能申请V段144MHz, 所以购买的无线电设备必须要有这个波段的核准码，宝峰UV5R V段没有核准码，不能申请。我最后是在闲鱼购买的森海克斯8800。
