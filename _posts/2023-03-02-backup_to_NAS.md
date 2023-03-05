@@ -13,7 +13,8 @@ keywords: NAS, rsync
 因为Synology Photos应用将照片按日期分目录归档，所以其他的零散照片也要分文件夹整理后上传到Photos文件夹
 [stackexchange - move millions of files into dated folders](https://unix.stackexchange.com/a/633157)
 ```bash
-for f in *.jpg; do
+shopt -s nullglob
+for f in *.jpg *.JPG *.jpeg *.png *.mp4; do
     date=$(date +%F -r "$f")
     y=${date:0:4}
     m=${date:5:2}
