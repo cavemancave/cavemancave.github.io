@@ -8,7 +8,7 @@ categories: proxy
 description: 代理折腾记录。
 keywords: proxy,setup
 ---
-[TOC]
+
 # 简介
 记录本次设置代理的过程。  
 本次采用Trojan-go + Caddy的方案。Shadowsocks太容易识别，IP已经被封一次，Vray的自研Vmess感觉以后也会被识别，Trojan-go伪装成https网页访问，听起来伪装性更好，不过没看到如何预防流量重放。Caddy配置简单，自动申请证书也很赞。  
