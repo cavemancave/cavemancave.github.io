@@ -1,8 +1,12 @@
 ---
+toc: true
+toc_sticky: true
 layout: single
 title:  "博客搭建记录-添加图片"
 date:   2022-11-18 15:39:53 +0800
-categories: www
+categories: blog
+description: 博客搭建记录-添加图片。
+keywords: blog
 ---
 # 方案选择
 保存位置：图床，github仓库，服务器自建图床  

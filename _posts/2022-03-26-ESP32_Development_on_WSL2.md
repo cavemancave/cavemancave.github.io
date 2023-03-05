@@ -3,7 +3,8 @@ toc: true
 toc_sticky: true
 layout: single
 title: 环境准备：在WSL2上开发ESP32
-categories: Blog
+date:   2022-03-26 17:39:53 +0800
+categories: blog
 description: 环境准备：在WSL2上开发ESP32。
 keywords: esp32, environment, wsl, usbip, usb-serial
 ---
