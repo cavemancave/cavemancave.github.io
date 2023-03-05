@@ -46,4 +46,4 @@ jobs:
           username: ${{ secrets.DC_USER }}
           key: ${{ secrets.DC_PASS }}
           debug: true
-          script: "cd /root/www/_site/; caddy reload; cd /root/code/cavemancave.github.io; git pull --recurse-submodules;"
+          script: "cd /root/www/_site/; caddy reload; cd /root/code/cavemancave.github.io; git fetch --recurse-submodules; git reset origin/main --hard --recurse-submodules;"
