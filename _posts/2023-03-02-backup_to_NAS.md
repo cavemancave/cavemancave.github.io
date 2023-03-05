@@ -3,6 +3,7 @@ toc: true
 toc_sticky: true
 layout: single
 title: rsync备份文件到NAS上
+date:   2023-03-02 17:39:53 +0800
 categories: NAS
 description: rsync备份文件到NAS上。
 keywords: NAS, rsync

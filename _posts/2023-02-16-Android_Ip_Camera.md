@@ -1,8 +1,12 @@
 ---
+toc: true
+toc_sticky: true
 layout: single
 title:  "废旧安卓折腾记录-网络摄像头"
 date:   2023-02-16 17:39:53 +0800
 categories: android
+description: OpenWrt折腾记录。
+keywords: steam,android,ipcam
 ---
 [TOC]
 
