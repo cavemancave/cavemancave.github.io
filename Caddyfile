@@ -1,8 +1,8 @@
-www.cavemancave.xyz:1234 {
+www.cavemancave.tk:1234 {
 	encode zstd gzip
 	file_server
 }
-www.cavemancave.xyz:80 {
+www.cavemancave.tk:80 {
 	encode zstd gzip
 	file_server
 }
