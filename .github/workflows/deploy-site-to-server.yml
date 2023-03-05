@@ -26,17 +26,24 @@ jobs:
         with:
           source: ./
           destination: ./_site
-          
+
       - name: "Deploy to Staging" 
-        uses: up9cloud/action-rsync@v1.3
-        env:
-          HOST: ${{secrets.DC_HOST}}
-          PORT: ${{secrets.DC_PORT}}
-          USER: ${{secrets.DC_USER}}
-          # private key
-          KEY: ${{secrets.DC_PASS}}
-          SOURCE: ./_site
-          TARGET: /root/www/
-          RUN_SCRIPT_ON: remote
-          POST_SCRIPT: "cd /root/www/_site/; caddy reload; cd /root/code/cavemancave.github.io; git pull --recurse-submodules;"
-        
+        uses: burnett01/rsync-deployments@5.2.1
+        with:
+          switches: -avzr --delete
+          path: ./_site
+          remote_path: /root/www/
+          remote_host: ${{ secrets.DC_HOST }}
+          remote_port: ${{ secrets.DC_PORT }}
+          remote_user: ${{ secrets.DC_USER }}
+          remote_key: ${{ secrets.DC_PASS }}
+
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.DC_HOST }}
+          port: ${{ secrets.DC_PORT }}
+          username: ${{ secrets.DC_USER }}
+          key: ${{ secrets.DC_PASS }}
+          debug: true
+          script: "cd /root/www/_site/; caddy reload; cd /root/code/cavemancave.github.io; git pull --recurse-submodules;"
