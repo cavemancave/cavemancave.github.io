@@ -1,8 +1,10 @@
 www.cavemancave.tk:1234 {
-	encode zstd gzip
-	file_server
+    root * /root/www/_site/
+    encode zstd gzip
+    file_server
 }
 www.cavemancave.tk:80 {
-	encode zstd gzip
-	file_server
+    root * /root/www/_site/
+    encode zstd gzip
+    file_server
 }
