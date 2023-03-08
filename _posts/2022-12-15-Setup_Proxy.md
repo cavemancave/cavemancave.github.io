@@ -23,24 +23,31 @@ keywords: proxy,setup
 
 # Caddy配置  
 登陆VPS，找一个网站文件夹目录（可以搜索网站模板），新建Caddyfile, 在端口1234上拉起https服务  
-/root/www/Caddyfile  
+/root/www/_site/Caddyfile  
 ```
 www.abc.com:1234 {
+    root * /root/www/_site/
     encode zstd gzip
     file_server
 }
 www.abc.com:80 {
+    root * /root/www/_site/
     encode zstd gzip
     file_server
 }
 ```
-caddy start 启动caddy，后台运行  
+执行`caddy start` 以后台运行的方式启动caddy  
+
 访问https://www.abc.com:1234，应该成功  
 访问http://www.abc.com:80，应该成功  
 访问https://www.abc.com，应该失败  
 
 # trojan-go 配置  
-1. 查找Caddy申请的证书文件，abc.com.crt/key  
+1. 查找Caddy申请的证书文件，abc.com.crt  
+   ```bash
+    root@linux:~# find ./ -name *.crt 
+    ./.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/www.abc.com/www.abc.com.crt
+   ```
 2. 创建配置文件  
     /root/trojan-go/config.json  
     ```json
@@ -68,6 +75,7 @@ caddy start 启动caddy，后台运行
         image: "p4gefau1t/trojan-go"
         container_name: trojan-go
         network_mode: host
+        restart: always
         volumes:
           - /root:/root/
           - /root/trojan-go:/etc/trojan-go
@@ -123,9 +131,17 @@ caddy start 启动caddy，后台运行
     socks5  192.168.0.5  1080  
     http  192.168.0.5 8118  
 
+# 服务自动启动
+为了保证服务器重启后可以自动拉起服务，有几个配置需要修改
+1. 保证docker服务自启动
+   `sudo systemctl enable docker`
+2. compose.yml中服务增加restart:always字段
+3. 修改/etc/caddy/Caddyfile，因为caddy.service自动启动时会使用这个文件, Caddyfile中也要增加root指定工作目录。
+
 # 调试
-1. lsof -i :443 查看端口占用，杀掉进程  
-2. 通过log_file字段配置log文件，不带路径的话，就在容器根目录下，可以进容器查看。不过日志会不停增大，只在调试时打开  
+1. 测试网页的时候可以使用命令测试，不用打开浏览器`curl -L http://www.abc.com:80`  
+2. lsof -i :443 查看端口占用，杀掉进程  
+3. 通过log_file字段配置log文件，不带路径的话，就在容器根目录下，可以进容器查看。不过日志会不停增大，只在调试时打开  
     ```bash
     taishan@taishanNAS:~$ sudo docker ps
     Password:
@@ -137,5 +153,5 @@ caddy start 启动caddy，后台运行
     / # tail  trojan-go.log
     [INFO]  2022/12/17 14:13:04 socks connection from 127.0.0.1:60526 metadata dauth-lp1.ndas.srv.nintendo.net:443
     ```
-3. cat /proc/1/fd/1 应该可以查看stdout，不过目前测试没有输出。  
-4. curl --socks5-hostname 可以让DNS在远端解析，避免本地DNS污染导致的连接失败
+4. cat /proc/1/fd/1 应该可以查看stdout，不过目前测试没有输出。  
+5. curl --socks5-hostname 可以让DNS在远端解析，避免本地DNS污染导致的连接失败
