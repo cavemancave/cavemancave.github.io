@@ -20,8 +20,10 @@ PC登录浙江政务服务网，（手机浙里办也可以进入，但是签章
 呼号是8个工作日
 
 # 考试
-小程序 业余无线电工具集
+小程序 业余无线电工具集  
 [业余无线电模拟考试平台 - 浏览题库](https://www.cqid.cn/all/)
+[缩略词](https://www.giangrandi.org/electronics/radio/abbrev.shtml)
+[Q短语](https://www.giangrandi.org/electronics/radio/qcode.shtml)
 
 2 3dB 4 6dB 8 9dB 
 1 0dB 2 3dB 4 6dB 5 7dB 8 9dB 10 10dB
