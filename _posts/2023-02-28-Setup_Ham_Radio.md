@@ -27,6 +27,88 @@ PC登录浙江政务服务网，（手机浙里办也可以进入，但是签章
 
 2 3dB 4 6dB 8 9dB 
 1 0dB 2 3dB 4 6dB 5 7dB 8 9dB 10 10dB
+30 kHz
+      LF Low Frequency
+300 kHz 
+      MF Medium Frequency
+3 MHz
+      HF High Frequency
+30 MHz
+      VHF Very High Frequency
+300 MHz
+      UHF Ultra High Frequency
+3000 MHz  3 GHz
+      SHF Super High Frequency
+30 000 MHz 30 GHz
+      EHF Extra High Frequency
+300 000 MHz 
+
+https://i0.wp.com/www.k0nr.com/wordpress/wp-content/uploads/2022/09/Bands_HF-VHF-UHF-k0nr2-624x483-1.jpg?ssl=1
+
+80米 3.5-3.9MHz， 主要业务
+29MHz 进行FM通话，实际占用的频率28.3-29.51MHz
+不能用于通话的HF业余频段为 10MHz业余频段
+21MHz 进行USB通话时可以实际占用的频率为  21.125-21.45MHz，除去21.1495-21.1505
+18MHz 进行USB通话                      18.1105-18.168MHz
+专用频段
+7M,14M,21M,28M,47G
+共用且为主要业务之一
+1.8M,3.5M,14.25M,18.068M,24.89M
+160m,80m ,20m   ,16m    ,11m
+QRN 天电 Nature
+QRO 增加功率
+QRV 你准备好了吗
+QRZ 最在呼叫我
+QRM 他台干扰
+QSL 我已收妥
+QTH 我的位置
+QSX xxx ON nnn KHz 我将在nnn KHz频率守听xxx电台
+QSP 你能传信到xxx电台吗
+
+STN 电台 station
+RIG 电台设备
+HR 这里听到
+FB 很好的，fine business， very good
+GLD 高兴
+
+3V、4X
+Tunis、
+
+频移RTTY   异步
+CW  带宽400Hz
+PSK31 相移
+
+PNP朝内
+1，3，1，3，7
+
+偶极子天线，谐振频率升高   ： 截短
+
+频率失真  各频率分量的比例发生了改变
+
+三万
+超出范围 
+涂改、仿制、倒卖、出租、出借、转让  不正当取得   执照或者呼号
+监督检查 隐瞒 虚假
+造成严重后果的
+
+警告、查封或者没收设备、五千元
+擅自设置       
+干扰无线电业务
+随意变更核定项目，发送和接收与业余无线电无关信号
+
+违反管制
+责令改正；拒不改正，查收；情节严重，吊销执照；违反治安，公安机关处罚
+
+列入频率划分表  划分
+规定 指定区域内  分配
+批准  指配
+
+发射类别
+CW  A1A
+SSB J3E
+RTTY F2B
+PSK31 G2B
+FM    F3E
 
 题：接收机的接收信号强度表每两档的信号强度相差6dB。接收某电台信号，发射功率为20dBW时读数为S9。该台减小发射功率后，接收机读数变为S4。此时该台的发射功率约为（以W为单位）：
 答：0.098W
