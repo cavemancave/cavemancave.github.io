@@ -24,6 +24,7 @@ PC登录浙江政务服务网，（手机浙里办也可以进入，但是签章
 [业余无线电模拟考试平台 - 浏览题库](https://www.cqid.cn/all/)
 [缩略词](https://www.giangrandi.org/electronics/radio/abbrev.shtml)
 [Q短语](https://www.giangrandi.org/electronics/radio/qcode.shtml)
+[业余无线电B类考试速记](https://www.xzzte.cn/archives/83.html)
 
 2 3dB 4 6dB 8 9dB 
 1 0dB 2 3dB 4 6dB 5 7dB 8 9dB 10 10dB
@@ -45,7 +46,7 @@ PC登录浙江政务服务网，（手机浙里办也可以进入，但是签章
 
 https://i0.wp.com/www.k0nr.com/wordpress/wp-content/uploads/2022/09/Bands_HF-VHF-UHF-k0nr2-624x483-1.jpg?ssl=1
 
-80米 3.5-3.9MHz， 主要业务
+
 29MHz 进行FM通话，实际占用的频率28.3-29.51MHz
 不能用于通话的HF业余频段为 10MHz业余频段
 21MHz 进行USB通话时可以实际占用的频率为  21.125-21.45MHz，除去21.1495-21.1505
@@ -55,6 +56,31 @@ https://i0.wp.com/www.k0nr.com/wordpress/wp-content/uploads/2022/09/Bands_HF-VHF
 共用且为主要业务之一
 1.8M,3.5M,14.25M,18.068M,24.89M
 160m,80m ,20m   ,16m    ,11m
+共用且为主要业务
+50MHz,144MHz
+共用且作为唯一主要业务的频段个数，及在3GHz以下的频段
+3个，144-146MHz
+共用且作为次要业务，1200MHz以下
+135.7kHz, 10.1MHz, 430MHz
+WARC频段
+10.1-10.15MHz，18.068-18.168MHz,24.89-24.99MHz
+40米波段在ITU1、2、3区频率范围及状态
+7.0-7.2MHz,7.0-7.3MHz,7.0-7.2MHz 专用
+160米，频率范围及状态
+1.8M-2.0M,主要业务
+80米 3.5-3.9MHz， 主要业务
+20米 14-14.25M为专用，14.25-14.35为主要业务
+15米 21-21.45M 专用
+10米 28-29.7M 专用
+6米  50-54M 主要
+2米  144-148M，144-146M唯一主要，146-148共同主要
+0.7米 430-440M，次要业务，主要业务是无线电定位和航空无线电导航
+IARU信标工作频率
+14.1M，18.11M，21.15M，24.930，28.2
+
+7M LSB 频率 7.03-7.2M
+
+
 QRN 天电 Nature
 QRO 增加功率
 QRV 你准备好了吗
