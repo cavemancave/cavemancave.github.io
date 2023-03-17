@@ -18,78 +18,91 @@ keywords: proxy,setup
 
 # 服务器配置
 1. 购买一个VPS，ip地址`1.2.3.4`，操作系统：Ubuntu 22.04 x86_64   
-2. 购买一个域名`www.abc.com`  
+2. 购买一个域名`abc.com`  
 3. 设置一条A记录  
     `A    www    1.2.3.4    600`
 
-# caddy配置
-## 安装caddy
-参考[官方安装教程](https://caddyserver.com/docs/install#debian-ubuntu-raspbian)，依次执行下面的命令
+# 安装docker，docker-compose
 ```bash
-sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
-sudo apt update
-sudo apt install caddy
+sudo apt install docker docker-compose
 ```
 
-## 修改默认配置文件
-caddy 安装完成后会启动一个systemd服务，这个服务是系统启动时自启动的，所以直接修改服务中指定的配置文件，可以保证重启后服务可以自启动。  
-1. 打开默认配置文件 `/etc/caddy/Caddyfile`。  
-1. 在`:80`后增加购买的域名, 改完后这一行应该像这样：`:80, www.cavemancave.tk {`  
-1. 重启服务，`sudo systemctl restart caddy`  
+# caddy配置
+## 添加docker
+创建/root/compose.yaml
+```yaml
+services:
+  caddy:
+    image: caddy:2
+    container_name: caddy
+    network_mode: host
+    restart: always
+    volumes:
+      - /root/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - /root/www:/www
+      - /root/caddy/cert:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory
+ ```
+## 创建caddy配置文件
+创建/root/caddy/Caddyfile
+```txt
+:80, www.abc.com {
+  root * /www
+  file_server
+}
+```
+## 添加网页
+创建/root/www/index.html
+```html
+<html>
+ <head>
+ </head>
+ <body>
+   <h1>Hello World<h1>
+ </body>
+</html>
+```
+## 启动docker
+```bash
+docker-compose up -d caddy
+```
 1. 访问 `http://www.abc.com` 应该成功打开网页
 1. 访问 `https://www.abc.com` 也应该成功打开网页。  
-1. 如果出错，可以通过 `sudo systemctl status caddy` 查看日志。比如我的/var/lib目录没有权限创建文件夹，就需要手动增加权限 `sudo chmod 777 /var; sudo chmod 777 /var/lib`  
+1.  如果出错，可以通过 `docker logs caddy` 查看日志
 
 # trojan-go配置
-## 查找证书文件
-trojan-go需要使用caddy申请的证书文件来进行TLS握手，使用find命令查找caddy自动申请的证书文件。在我的环境上查找到的目录为：  
-```bash
-find / -name www.abc.com.key
-/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/www.abc.com/www.abc.com.key
-``` 
-
-## 创建trojan-go服务端配置文件
-创建trojan-go服务端配置文件 `/root/trojan-go/server.json` ，监听在端口 `1234`  
-  
+## 添加容器配置
+/root/compose.yaml  
+```yaml
+  trojan-go:
+    image: p4gefau1t/trojan-go
+    container_name: trojan-go
+    network_mode: host
+    restart: always
+    volumes:
+      - /root/trojan-go/server.json:/etc/trojan-go/config.json
+      - /root/caddy/cert/www.abc.com:/cert
+```
+## 添加服务端配置
+ `/root/trojan-go/server.json` ，监听在端口 `1234`  
 ```json
 {
     "run_type": "server",
-    "local_addr": "www.cavemancave.tk",
+    "local_addr": "www.abc.com",
     "local_port": 1234,
-    "remote_addr": "www.cavemancave.tk",
+    "remote_addr": "www.abc.com",
     "remote_port": 80,
     "password": [
         "password"
     ],
     "ssl": {
-        "cert": "/cert/www.cavemancave.tk.crt",
-        "key": "/cert/www.cavemancave.tk.key",
+        "cert": "/cert/www.abc.com.crt",
+        "key": "/cert/www.abc.com.key",
         "fallback_port": 443
     }
 }
 ```
-
-## 启动trojan-go服务端容器
-1. 安装docker  
-    ```bash
-    sudo apt-get install docker docker-compose
-    ```
-1. 创建容器配置文件  
-    /root/compose.yaml  
-    ```yaml
-    services:
-      trojan-go:
-        image: p4gefau1t/trojan-go
-        container_name: trojan-go
-        network_mode: host
-        volumes:
-          - /root/trojan-go/server.json:/etc/trojan-go/config.json
-          - /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.    letsencrypt.org-directory/www.abc.com:/cert
-    ```
-    上面的配置中映射了2个文件夹，一个是trojan-go服务端配置，另一个是caddy申请的证书文件夹。  
-1. 执行 `docker-compose up -d` 拉起容器   
+## 拉起容器
+1. 执行 `docker-compose up -d trojan-go` 拉起容器   
 1. 访问 `https://www.abc.com:1234` 应该成功打开网页  
 1. 如果出错的话，可以通过 `docker logs trojan-go` 查看docker日志
 
@@ -105,7 +118,7 @@ find / -name www.abc.com.key
         "run_type": "client",
         "local_addr": "0.0.0.0",
         "local_port": 1080,
-        "remote_addr": "www.cavemancave.tk",
+        "remote_addr": "www.abc.com",
         "remote_port": 1234,
         "password": [
             "password"
@@ -231,3 +244,45 @@ geosite.dat最近版本已经变成dlc.dat，下载后需要重命名为geosite.
     ```bash
     docker exec -it trojan-go sh
     ```
+
+## 完整的compose.yaml
+创建/root/compose.yaml
+```
+services:
+  caddy:
+    image: caddy:2
+    container_name: caddy
+    network_mode: host
+    restart: always
+    volumes:
+      - /root/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - /root/www:/www
+      - /root/caddy/cert:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory
+
+  trojan-go:
+    image: p4gefau1t/trojan-go
+    container_name: trojan-go
+    network_mode: host
+    restart: always
+    volumes:
+      - /root/trojan-go/server.json:/etc/trojan-go/config.json
+      - /root/caddy/cert/www.cavemancave.tk:/cert
+
+
+  trojan-go-cf:
+    image: p4gefau1t/trojan-go
+    container_name: trojan-go-cf
+    network_mode: host
+    restart: always
+    volumes:
+      - /root/trojan-go/server-cf.json:/etc/trojan-go/config.json
+      - /root/caddy/cert/www.cavemancave.cf:/cert
+
+  trojan-client:
+    image: p4gefau1t/trojan-go
+    container_name: trojan-client
+    network_mode: host
+    volumes:
+      - /root/trojan-go/client.json:/etc/trojan-go/config.json
+      - /root/trojan-go:/geo
+```
