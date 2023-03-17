@@ -18,8 +18,8 @@ keywords: proxy,setup
 
 # 服务器配置
 1. 购买一个VPS，ip地址`1.2.3.4`，操作系统：Ubuntu 22.04 x86_64   
-2. 购买一个域名`abc.com`  
-3. 设置一条A记录  
+1. 购买一个域名`abc.com`  
+1. 设置一条A记录  
     `A    www    1.2.3.4    600`
 
 # 安装容器环境
@@ -65,9 +65,9 @@ services:
 ```bash
 docker-compose up -d caddy
 ```
-1. 访问 `http://www.abc.com` 应该成功打开网页
+1. 访问 `http://www.abc.com` 应该成功打开网页  
 1. 访问 `https://www.abc.com` 也应该成功打开网页。  
-1.  如果出错，可以通过 `docker logs caddy` 查看日志
+1. 如果出错，可以通过 `docker logs caddy` 查看日志  
 
 # trojan-go配置
 ## 添加容器配置
@@ -105,6 +105,7 @@ docker-compose up -d caddy
 1. 执行 `docker-compose up -d trojan-go` 拉起容器   
 1. 访问 `https://www.abc.com:1234` 应该成功打开网页  
 1. 如果出错的话，可以通过 `docker logs trojan-go` 查看docker日志  
+
 ## 服务自启动
 1. docker服务是开机自启动的，但是某个容器需要开机启动的话，需要在compose.yaml中增加 `restart: always` 字段，并拉起过一次  
 1. 增加字段后，重新拉起容器，再重启VPS，访问 `https://www.abc.com:1234` 应该成功打开网页  
