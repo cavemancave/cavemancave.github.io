@@ -22,7 +22,7 @@ keywords: proxy,setup
 3. 设置一条A记录  
     `A    www    1.2.3.4    600`
 
-# 安装docker，docker-compose
+# 安装容器环境
 ```bash
 sudo apt install docker docker-compose
 ```
@@ -211,16 +211,17 @@ docker-compose up -d caddy
 1. 如果想让非本机设备使用代理，设置绑定地址local_addr时应该设置成0.0.0.0  
 
 # 优化
-1. 可以让caddy监听到1234端口，trojan-go服务端监听443端口，增加隐秘性，简化防火墙配置，不过caddy搭建的网站的访问速度会变慢。  
-1. caddy默认的网站根目录是 `/usr/share/caddy`，如果需要更换到其他目录，应该在 `/etc/caddy/Caddyfile` 中增加root字段指定工作目录。  
+## 端口优化
+1. 可以让caddy监听1234端口，trojan-go服务端监听443端口，增加隐秘性，简化防火墙配置，不过caddy搭建的网站的访问速度会变慢。  
+
 ## 更新geoip数据库  
-trojan-go更新较慢，release包中还是比较旧的数据库，如果有需要，可以手动下载替换。  
+1. trojan-go更新较慢，release包中还是比较旧的数据库，如果有需要，可以手动下载替换。  
 https://github.com/v2fly/geoip/releases/latest/download/geoip.dat  
 https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat  
-geosite.dat最近版本已经变成dlc.dat，下载后需要重命名为geosite.dat  
-容器中替换的话，可以增加一个目录映射,  
+1. geosite.dat最近版本已经变成dlc.dat，下载后需要重命名为geosite.dat  
+1. 容器中替换的话，可以增加一个目录映射,  
 `      - /root/trojan-go:/geo`
-客户端配置中router字段增加2行配置  
+1. 客户端配置中router字段增加2行配置  
 /root/trojan-go/client.json
 ```json
         "geoip": "/geo/geoip.dat",
@@ -228,8 +229,12 @@ geosite.dat最近版本已经变成dlc.dat，下载后需要重命名为geosite.
 ```
 
 # 调试
-1. 测试网页的时候可以使用命令测试，不用打开浏览器`curl -I http://www.abc.com:80`, `curl -L http://www.abc.com:80`    
-1. lsof -i :443 查看端口占用，杀掉进程  
+## 普通调试
+1. 测试网页的时候可以使用命令测试，不用打开浏览器
+   `curl -I http://www.abc.com:80` 查看网页头信息  
+   `curl -L http://www.abc.com:80` 下载网页  
+1. lsof -i :443 查看端口占用  
+
 ## 容器异常退出调试
 1. 在compose.yaml中，修改entrypoint  
     ```yaml
