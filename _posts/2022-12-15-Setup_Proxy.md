@@ -12,7 +12,7 @@ keywords: proxy,setup
 # 简介
 记录本次设置代理的过程。  
 本次采用Trojan-go + Caddy的方案。Shadowsocks太容易识别，IP已经被封一次，Vray的自研Vmess感觉以后也会被识别，Trojan-go伪装成https网页访问，听起来伪装性更好，不过没看到如何预防流量重放。Caddy配置简单，自动申请证书也很赞。  
-后续计划服务端和客户端都使用容器，这样对环境的污染最小，备份一份compose.yaml和代理配置文件夹即可。  
+计划服务端和客户端都使用容器，这样对环境的污染最小，备份一份compose.yaml和代理配置文件夹即可。  
 目前在NAS上长期运行着代理客户端，并向局域网提供socks和http代理，局域网内部分设备设置代理服务器为NAS地址，经NAS代理出海。  
 计划测试自动代理配置，不过听说有签名问题，待研究  
 
@@ -104,12 +104,12 @@ docker-compose up -d caddy
 ## 拉起容器
 1. 执行 `docker-compose up -d trojan-go` 拉起容器   
 1. 访问 `https://www.abc.com:1234` 应该成功打开网页  
-1. 如果出错的话，可以通过 `docker logs trojan-go` 查看docker日志
-
+1. 如果出错的话，可以通过 `docker logs trojan-go` 查看docker日志  
 ## 服务自启动
-1. docker服务是开机自启动的，但是需要启动的容器需要在compose.yaml中增加 `restart: always` 字段，并拉起过一次  
+1. docker服务是开机自启动的，但是某个容器需要开机启动的话，需要在compose.yaml中增加 `restart: always` 字段，并拉起过一次  
 1. 增加字段后，重新拉起容器，再重启VPS，访问 `https://www.abc.com:1234` 应该成功打开网页  
 1. 刚开始调试时，不能加上 `restart: always` 字段，否则可能会因为配置错误，反复重启，打印大量日志，也无法进入容器调试  
+
 # trojan-go客户端配置
 ## linux客户端
 1. 创建一个客户端配置文件`/root/trojan-go/client.json`，监听在1080端口。  
@@ -150,20 +150,20 @@ docker-compose up -d caddy
     curl -x "socks5://0.0.0.0:1080" -I https://www.baidu.com
     docker logs trojan-client
     ```
-2. 如果不在VPS上测试，而是本地测试，compose.yaml应该删除服务端的段落  
-    在本地测试连接时，经常受到DNS污染，可以使用下面的命令让DNS在远端解析，避免本地DNS污染导致的连接失败
-    `curl --socks5-hostname localhost:1080 www.google.com`
+1. 如果不在VPS上测试，而是本地测试，compose.yaml应该删除服务端的段落  
+   在本地测试连接时，经常受到DNS污染，可以使用下面的命令让DNS在远端解析，避免本地DNS污染导致的连接失败
+    `curl --socks5-hostname localhost:1080 www.google.com`  
+
 ## windows客户端
-项目主页下载release包  
- https://github.com/p4gefau1t/trojan-go/releases/latest/download/trojan-go-windows-arm64.zip  
-解压  
-修改config.json为上面的client.json的内容  
-为trojan-go.exe创建快捷方式  
-将快捷方式加入到`C:\ProgramData\Microsoft\Windows\Start Menu\Programs`目录  
-开始-》输入trojan-》点击执行  
+1. 项目主页下载[release包](https://github.com/p4gefau1t/trojan-go/releases/latest/download/trojan-go-windows-amd64.zip)  
+1. 解压  
+1. 修改config.json为上面的client.json的内容  
+1. 为trojan-go.exe创建快捷方式  
+1. 将快捷方式加入到`C:\ProgramData\Microsoft\Windows\Start Menu\Programs`目录  
+1. 开始-》输入trojan-》点击执行  
 
 ## android客户端
-下载Igniter，不过我直接使用会报错，使用android studio编译后直接安装到手机上可以使用。  
+使用[trojan-go-android](https://github.com/p4gefau1t/trojan-go-android)，不过没找到apk，使用android studio编译后直接安装到手机上可以使用。  
 
 ## 国内直连和广告屏蔽
 国内直连可以使用Trojan-Go内建的路由模块：  
@@ -191,7 +191,7 @@ docker-compose up -d caddy
 
 # NAS局域网代理  
 1. 局域网内部分设备无法安装trojan客户端，只能配置http或者socks代理，考虑到功耗，暂由NAS长期打开trojan客户端，再向局域网提供socks代理，其他设备设置代理服务器为NAS的IP地址，端口1080。由privoxy提供http代理，端口8118。  
-2. 在NAS上新建2个文件夹和文件  
+1. 在NAS上新建2个文件夹和文件  
     /home/config/trojan-go/config.json
     内容如上一节  
     /home/config/privoxy/config  
@@ -199,16 +199,17 @@ docker-compose up -d caddy
     forward-socks5   /               0.0.0.0:1080 .
     listen-address 0.0.0.0:8118
     ```
-3. 拉起2个容器  
+1. 拉起2个容器  
     `p4gefault-trojan-go`  
     `vimagick-privoxy`  
     拉起时使用与DockerHost相同的网络，根据Entrypoint确定默认配置文件路径，各自映射配置文件  
     `/home/config/trojan-go/config.json` => `/etc/trojan-go/config.json`  
     `/home/config/privoxy/config` => `/etc/privoxy/config`  
-4. 局域网设备设置代理服务器为NAS  
+1. 局域网设备设置代理服务器为NAS  
     `socks5  192.168.0.5  1080`  
     `http  192.168.0.5 8118`  
 1. 如果想让非本机设备使用代理，设置绑定地址local_addr时应该设置成0.0.0.0  
+
 # 优化
 1. 可以让caddy监听到1234端口，trojan-go服务端监听443端口，增加隐秘性，简化防火墙配置，不过caddy搭建的网站的访问速度会变慢。  
 1. caddy默认的网站根目录是 `/usr/share/caddy`，如果需要更换到其他目录，应该在 `/etc/caddy/Caddyfile` 中增加root字段指定工作目录。  
@@ -227,8 +228,8 @@ geosite.dat最近版本已经变成dlc.dat，下载后需要重命名为geosite.
 ```
 
 # 调试
-1. 测试网页的时候可以使用命令测试，不用打开浏览器`curl -L http://www.abc.com:80`  
-2. lsof -i :443 查看端口占用，杀掉进程
+1. 测试网页的时候可以使用命令测试，不用打开浏览器`curl -I http://www.abc.com:80`, `curl -L http://www.abc.com:80`    
+1. lsof -i :443 查看端口占用，杀掉进程  
 ## 容器异常退出调试
 1. 在compose.yaml中，修改entrypoint  
     ```yaml
@@ -244,45 +245,3 @@ geosite.dat最近版本已经变成dlc.dat，下载后需要重命名为geosite.
     ```bash
     docker exec -it trojan-go sh
     ```
-
-## 完整的compose.yaml
-创建/root/compose.yaml
-```
-services:
-  caddy:
-    image: caddy:2
-    container_name: caddy
-    network_mode: host
-    restart: always
-    volumes:
-      - /root/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - /root/www:/www
-      - /root/caddy/cert:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory
-
-  trojan-go:
-    image: p4gefau1t/trojan-go
-    container_name: trojan-go
-    network_mode: host
-    restart: always
-    volumes:
-      - /root/trojan-go/server.json:/etc/trojan-go/config.json
-      - /root/caddy/cert/www.cavemancave.tk:/cert
-
-
-  trojan-go-cf:
-    image: p4gefau1t/trojan-go
-    container_name: trojan-go-cf
-    network_mode: host
-    restart: always
-    volumes:
-      - /root/trojan-go/server-cf.json:/etc/trojan-go/config.json
-      - /root/caddy/cert/www.cavemancave.cf:/cert
-
-  trojan-client:
-    image: p4gefau1t/trojan-go
-    container_name: trojan-client
-    network_mode: host
-    volumes:
-      - /root/trojan-go/client.json:/etc/trojan-go/config.json
-      - /root/trojan-go:/geo
-```
