@@ -18,7 +18,7 @@ github pages默认会有一个Actions: pages-build-deployment, 观察源码发�
    - ssh-key-gen生成秘钥  
    - ssh-copy-id user@serverIp拷贝到服务器  
    - cat ~/.ssh/id_rsa 查看私钥  
-1. 添加Secerts
+1. 添加Secerts  
    项目页 -> Settings -> Security -> Secrets -> Actions -> New repository secret添加4个密文  
    - DC_HOST 是服务器域名或者地址  
    - DC_PORT 是ssh登录服务器的端口  
