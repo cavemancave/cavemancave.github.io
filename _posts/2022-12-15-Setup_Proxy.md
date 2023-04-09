@@ -144,7 +144,10 @@ docker-compose up -d caddy
         volumes:
           - /root/trojan-go/client.json:/etc/trojan-go/config.json
     ```
-1. 拉起客户端容器 `docker-compose up -d trojan-client`  
+1. 拉起客户端容器  
+    ```bash
+    docker-compose up -d trojan-client
+    ```
 1. 访问 google, baidu 应该成功，查看日志没有错误  
     ```bash
     curl -x "socks5://0.0.0.0:1080" -I https://www.google.com
@@ -152,8 +155,10 @@ docker-compose up -d caddy
     docker logs trojan-client
     ```
 1. 如果不在VPS上测试，而是本地测试，compose.yaml应该删除服务端的段落  
-   在本地测试连接时，经常受到DNS污染，可以使用下面的命令让DNS在远端解析，避免本地DNS污染导致的连接失败
-    `curl --socks5-hostname localhost:1080 www.google.com`  
+   在本地测试连接时，经常受到DNS污染，可以使用下面的命令让DNS在远端解析，避免本地DNS污染导致的连接失败  
+    ```bash
+    curl --socks5-hostname localhost:1080 www.google.com
+    ```
 
 ## windows客户端
 1. 项目主页下载[release包](https://github.com/p4gefau1t/trojan-go/releases/latest/download/trojan-go-windows-amd64.zip)  
@@ -221,20 +226,29 @@ https://github.com/v2fly/geoip/releases/latest/download/geoip.dat
 https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat  
 1. geosite.dat最近版本已经变成dlc.dat，下载后需要重命名为geosite.dat  
 1. 容器中替换的话，可以增加一个目录映射,  
-`      - /root/trojan-go:/geo`
+    ```yaml
+          - /root/trojan-go:/geo
+    ```
 1. 客户端配置中router字段增加2行配置  
-/root/trojan-go/client.json
-```json
-        "geoip": "/geo/geoip.dat",
-        "geosite": "/geo/geosite.dat"
-```
+    /root/trojan-go/client.json
+    ```json
+            "geoip": "/geo/geoip.dat",
+            "geosite": "/geo/geosite.dat"
+    ```
 
 # 调试
 ## 普通调试
-1. 测试网页的时候可以使用命令测试，不用打开浏览器
-   `curl -I http://www.abc.com:80` 查看网页头信息  
-   `curl -L http://www.abc.com:80` 下载网页  
-1. lsof -i :443 查看端口占用  
+1. 测试网页的时候可以使用命令测试，不用打开浏览器  
+    ```bash
+    # 查看网页头信息
+    curl -I http://www.abc.com:80
+    # 下载网页 
+    curl -L http://www.abc.com:80 
+    ```
+1. 查看端口占用  
+    ```bash
+    lsof -i :443 
+    ```
 
 ## 容器异常退出调试
 1. 在compose.yaml中，修改entrypoint  
