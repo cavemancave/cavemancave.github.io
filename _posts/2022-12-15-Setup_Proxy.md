@@ -239,15 +239,15 @@ https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat
 ## 容器异常退出调试
 1. 在compose.yaml中，修改entrypoint  
     ```yaml
-    entrypoint :
-      - /bin/sh
-      - /test.sh
+        entrypoint :
+          - /bin/sh
+          - /test.sh
     ```
 1. 在测试脚本test.sh中增加一条阻塞命令  
     ```bash
     tail -f /dev/null
     ```
-1. 进入容器调试
+1. 拉起容器；进入容器；这样就可以查看文件映射结果或者手动执行entrypoint中的命令等操作
     ```bash
     docker exec -it trojan-go sh
     ```
