@@ -1,12 +1,10 @@
 ---
-toc: true
-toc_sticky: true
-layout: single
-title:  "业余无线电折腾记录"
-date:   2023-02-28 17:39:53 +0800
-categories: radio
-description: 业余无线电折腾记录。
-keywords: ham, radio, 8800
+title: "业余无线电折腾记录"
+date: 2023-02-28T13:07:27Z
+draft: false
+tags: ["radio", "ham", "8800"]
+series: ["业余无线电折腾记录"]
+categories: ["Setup"]
 ---
 
 # 手台购买

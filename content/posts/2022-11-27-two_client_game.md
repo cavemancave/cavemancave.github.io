@@ -1,12 +1,10 @@
 ---
-toc: true
-toc_sticky: true
-layout: single
-title:  "制作一个两个客户端联网交互的小游戏"
-date:   2022-11-27 17:39:53 +0800
-categories: game
-description: 制作一个两个客户端联网交互的小游戏。
-keywords: game
+title: "制作一个两个客户端联网交互的小游戏"
+date: 2022-11-27T13:07:27Z
+draft: false
+tags: ["game", "java", "socket"]
+series: ["Game"]
+categories: ["Game"]
 ---
 
 如何用面向对象设计一个程序，经典推荐？ - rufeng2000的回答 - 知乎
