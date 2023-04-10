@@ -1,12 +1,10 @@
 ---
-toc: true
-toc_sticky: true
-layout: single
-title:  "代理折腾记录"
-date:   2022-12-15 17:39:53 +0800
-categories: proxy
-description: 代理折腾记录。
-keywords: proxy,setup
+title: "代理折腾记录"
+date: 2022-12-15T13:07:27Z
+draft: false
+tags: ["proxy", "setup", "caddy", "trojan-go"]
+series: ["Proxy"]
+categories: ["Setup"]
 ---
 
 # 简介

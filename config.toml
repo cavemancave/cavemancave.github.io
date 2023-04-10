@@ -1,0 +1,80 @@
+baseurl = "https://cavemancave.github.io"
+title = "cavemancave"
+theme = "hugo-coder"
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+paginate = 20
+
+disqusShortname = "cavemancave"
+
+[markup.highlight]
+style = "github-dark"
+
+[params]
+  author = "caveman"
+  info = "Software Engnieer, Ex-Embedded Engineer"
+  description = "caveman's personal tech diary"
+  keywords = "blog,developer,personal"
+  avatarurl = "images/blog/assets/avatar.jpg"
+  #gravatar = "echooffapple@gmail.com"
+
+  favicon_32 = "images/blog/assets/favicon-32x32.png"
+  favicon_16 = "images/blog/assets/favicon-16x16.png"
+
+  since = 2022
+
+  enableTwemoji = true
+
+  colorScheme = "auto"
+  hidecolorschemetoggle = false
+
+  # customCSS = ["css/custom.css"]
+  # customSCSS = ["scss/custom.scss"]
+  # customJS = ["js/custom.js"]
+
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+
+# Social links
+[[params.social]]
+  name = "Github"
+  icon = "fa fa-github fa-2x"
+  weight = 1
+  url = "https://github.com/cavemancave"
+
+# Menu links
+[[menu.main]]
+  name = "Blog"
+  weight = 1
+  url  = "posts/"
+[[menu.main]]
+  name = "category"
+  weight = 2
+  url = "categories/"
+[[menu.main]]
+  name = "tags"
+  weight = 2
+  url = "tags/"
+[[menu.main]]
+  name = "series"
+  weight = 2
+  url = "series/"
+[[menu.main]]
+  name = "About"
+  weight = 2
+  url = "about/"
+
+# https://giscus.app
+[params.giscus] 
+  repo = "cavemancave/cavemancave.github.io"
+  repoID = "R_kgDOHafRcQ"
+  category = "Announcements"
+  categoryID = "DIC_kwDOHafRcc4CPW5o"
+  mapping = "og:title"
+  strict = "0"
+  reactionsEnabled = "1"
+  emitMetadata = "0"
+  inputPosition = "bottom"
