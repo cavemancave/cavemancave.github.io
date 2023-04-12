@@ -85,7 +85,7 @@ docker-compose up -d caddy
 ```json
 {
     "run_type": "server",
-    "local_addr": "www.abc.com",
+    "local_addr": "0.0.0.0",
     "local_port": 1234,
     "remote_addr": "www.abc.com",
     "remote_port": 80,
