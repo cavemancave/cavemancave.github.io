@@ -26,7 +26,7 @@ sudo apt install docker docker-compose
 ```
 
 # caddy配置
-## 添加docker
+## 添加容器
 创建/root/compose.yaml
 ```yaml
 services:
@@ -34,17 +34,21 @@ services:
     image: caddy:2
     container_name: caddy
     network_mode: host
-    restart: always
     volumes:
       - /root/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - /root/www:/www
-      - /root/caddy/cert:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory
- ```
+      - /root/www:/srv
+      - /root/caddy/data:/data
+      - /root/caddy/config:/config
+```
+创建需要的目录
+```bash
+mkdir /root/caddy/ /root/caddy/data /root/caddy/config /root/www
+```
 ## 创建caddy配置文件
 创建/root/caddy/Caddyfile
 ```txt
 :80, www.abc.com {
-  root * /www
+  root * /srv
   file_server
 }
 ```
@@ -75,10 +79,9 @@ docker-compose up -d caddy
     image: p4gefau1t/trojan-go
     container_name: trojan-go
     network_mode: host
-    restart: always
     volumes:
       - /root/trojan-go/server.json:/etc/trojan-go/config.json
-      - /root/caddy/cert/www.abc.com:/cert
+      - /root/caddy/data/caddy/certificates/acme-v02.api.letsencrypt.org-directory:/cert
 ```
 ## 添加服务端配置
  `/root/trojan-go/server.json` ，监听在端口 `1234`  
@@ -93,8 +96,8 @@ docker-compose up -d caddy
         "password"
     ],
     "ssl": {
-        "cert": "/cert/www.abc.com.crt",
-        "key": "/cert/www.abc.com.key",
+        "cert": "/cert/www.abc.com/www.abc.com.crt",
+        "key": "/cert/www.abc.com/www.abc.com.key",
         "fallback_port": 443
     }
 }
@@ -123,13 +126,10 @@ docker-compose up -d caddy
             "password"
         ],
         "ssl": {
-            "sni": "www.cavemancave.tk"
+            "sni": "www.abc.com"
         },
         "mux" :{
             "enabled": true
-        },
-        "router":{
-            "enabled": false
         }
     }
     ```
@@ -171,7 +171,7 @@ docker-compose up -d caddy
 
 ## 国内直连和广告屏蔽
 国内直连可以使用Trojan-Go内建的路由模块：  
-修改客户端配置文件router字段为：  
+修改客户端配置文件, 增加router字段：  
 /root/trojan-go/client.json
 ```json
     "router":{
