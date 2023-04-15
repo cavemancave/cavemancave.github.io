@@ -11,6 +11,8 @@ GitHub pages of cavemancave
 git clone --recurse-submodules git@github.com:cavemancave/cavemancave.github.io.git  
 git submodule update --recursive --remote 
 git pull --recurse-submodules
+git fetch --recurse-submodules;
+git reset origin/main --hard --recurse-submodules;
 # tag
 git tag -a v0.0.3 -m 'messages'
 git push origin --tags
