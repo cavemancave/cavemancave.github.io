@@ -1,4 +1,4 @@
 :80, www.cavemancave.tk, www.cavemancave.cf:8443 {
-  root * /www
-  file_server
+	root * /srv
+	file_server
 }
