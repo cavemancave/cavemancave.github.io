@@ -10,7 +10,7 @@ on:
 
 jobs:
   call-workflow-build:
-    uses: ./.github/workflows/hugo.yml
+    uses: ./.github/workflows/hugo.yaml
 
   upload-release:
     runs-on: ubuntu-latest
