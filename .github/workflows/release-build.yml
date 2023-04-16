@@ -9,21 +9,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  rsync:
+  call-workflow-build:
+    uses: ./.github/workflows/hugo.yml
+
+  upload-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: my-pages
-          path: ./
+          name: github-pages
     
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: ./
 
       - name: Zip site
         run: |
-          zip -r site.zip ./public/
+          zip -r site.zip ./
           
       - name: Use last commit message as a body of new release
         id: read_release
