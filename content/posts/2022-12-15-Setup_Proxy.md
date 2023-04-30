@@ -19,4 +19,3 @@ categories: ["Setup"]
 [代理折腾记录 - trojan-go客户端]({{< ref "/posts/2022-12-15-Setup_Proxy_trojan-go-client" >}})  
 [代理折腾记录 - trojan-go调试]({{< ref "/posts/2022-12-15-Setup_Proxy_trojan-go-debug" >}})  
 [代理折腾记录 - NAS局域网代理]({{< ref "/posts/2022-12-15-Setup_Proxy_NAS" >}})  
-[代理折腾记录 - trojan-go-api]({{< ref "/posts/2023-04-30-Setup_Proxy_trojan-go-api" >}})  
