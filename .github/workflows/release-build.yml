@@ -9,12 +9,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  call-workflow-build:
+  call-workflow-hugo:
     uses: ./.github/workflows/hugo.yaml
 
   upload-release:
     runs-on: ubuntu-latest
-    needs: build
+    needs: call-workflow-hugo
     steps:
       - uses: actions/download-artifact@v3
         with:
