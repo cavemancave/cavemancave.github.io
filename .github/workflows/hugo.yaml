@@ -68,17 +68,6 @@ jobs:
         with:
           path: ./public
 
-      - name: "Deploy to my server" 
-        uses: burnett01/rsync-deployments@5.2.1
-        with:
-          switches: -avzr --delete
-          path: ./public/
-          remote_path: /root/www/
-          remote_host: ${{ secrets.DC_HOST }}
-          remote_port: ${{ secrets.DC_PORT }}
-          remote_user: ${{ secrets.DC_USER }}
-          remote_key: ${{ secrets.DC_PASS }}
-
   # Deployment job
   deploy:
     environment:
@@ -90,13 +79,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v0.1.8
-        with:
-          host: ${{ secrets.DC_HOST }}
-          port: ${{ secrets.DC_PORT }}
-          username: ${{ secrets.DC_USER }}
-          key: ${{ secrets.DC_PASS }}
-          debug: false
-          script: "docker exec -w /etc/caddy caddy caddy reload"
