@@ -1,0 +1,50 @@
+# Sample workflow for building and deploying a Hugo site to GitHub Pages
+name: Deploy Hugo site to my server
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  # Allow reuse
+  workflow_call:
+
+jobs:
+  call-workflow-build:
+    uses: ./.github/workflows/hugo.yaml
+
+  upload-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: github-pages
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: "Deploy to my server" 
+        uses: burnett01/rsync-deployments@5.2.1
+        with:
+          switches: -avzr --delete
+          path: ./public/
+          remote_path: /root/www/
+          remote_host: ${{ secrets.DC_HOST }}
+          remote_port: ${{ secrets.DC_PORT }}
+          remote_user: ${{ secrets.DC_USER }}
+          remote_key: ${{ secrets.DC_PASS }}
+
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.DC_HOST }}
+          port: ${{ secrets.DC_PORT }}
+          username: ${{ secrets.DC_USER }}
+          key: ${{ secrets.DC_PASS }}
+          debug: false
+          script: "docker exec -w /etc/caddy caddy caddy reload"
+
