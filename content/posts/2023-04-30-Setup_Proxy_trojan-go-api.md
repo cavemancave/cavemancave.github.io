@@ -17,6 +17,7 @@ root@brave-cat-2:~# docker exec -it trojan-go sh -c "trojan-go -api-addr 127.0.0
 [{"status":{"user":{"hash":"ae3d5ff7c27d9f7972104af0ce08e61b50f8a5d5519b3e3a17fe5b5a"},"traffic_total":{"upload_traffic":30032266,"download_traffic":11098243382},"speed_current":{},"speed_limit":{}}}]
 ```
 ## jq
+使用jq格式化输出，第一个[会导致jq格式化出错，直接cut掉
 ```bash
 root@brave-cat-2:~# docker exec -it trojan-go sh -c "trojan-go -api-addr 127.0.0.1:10005 -api list" |cut -c 2- |jq
 {
@@ -38,6 +39,7 @@ root@brave-cat-2:~# docker exec -it trojan-go sh -c "trojan-go -api-addr 127.0.0
 parse error: Unmatched ']' at line 1, column 243
 ```
 ## 单个用户
+单个用户的输出可以直接用jq格式化
 ```bash
 root@brave-cat-2:~# docker exec -it trojan-go sh -c "trojan-go -api-addr 127.0.0.1:10005 -api get -target-hash ae3d5ff7c27d9f7972104af0ce08e61b50f8a5d5519b3e3a17fe5b5a"  | jq
 {
@@ -55,3 +57,5 @@ root@brave-cat-2:~# docker exec -it trojan-go sh -c "trojan-go -api-addr 127.0.0
   }
 }
 ```
+# 客户端查看网速
+查看issue，应该还没有实现，但是这个项目不再更新了，可以参考peter-tank的修改自己修改下，简单试了下，没改成功，以后需要再试。 [add client-side traffic query api cmd #79](https://github.com/p4gefau1t/trojan-go/pull/79)
