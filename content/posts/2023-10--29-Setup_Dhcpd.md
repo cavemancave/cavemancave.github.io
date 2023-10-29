@@ -67,3 +67,4 @@ networkboot-dhcpd
 映射目录  
 `/file/config/dhcpd/data/` => `/data`  
 
+## 关闭路由器dhcp服务
