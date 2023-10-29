@@ -8,9 +8,9 @@ categories: ["Setup"]
 ---
 
 ## 配置文件
-NAS创建文件夹
-/home/nginx 放网站文件
-/home/nginx/file 共享的文件放这里
+NAS创建文件夹  
+/home/nginx 放网站文件  
+/home/nginx/file 共享的文件放这里  
 /home/config/nginx/default.conf, 内容如下:  
 ```bash
 #/etc/nginx/conf.d/default.conf
@@ -26,8 +26,8 @@ server {
 }
 ```
 ## docker映射
-创建docker， 映射目录
+创建docker， 映射目录  
 `/home/config/nginx/default.conf` => `/etc/nginx/conf.d/default.conf`  
 `/home/nginx/` => `/nginx/`  
 ## 访问
-访问 `http://192.168.0.x:8119/file`就可以直接下载文件了
+访问 `http://192.168.0.x:8119/file`就可以直接下载文件了  
