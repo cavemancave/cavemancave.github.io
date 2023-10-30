@@ -33,7 +33,7 @@ jobs:
         uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -avzr --delete
-          path: ./public/
+          path: ./
           remote_path: /root/www/
           remote_host: ${{ secrets.DC_HOST }}
           remote_port: ${{ secrets.DC_PORT }}
