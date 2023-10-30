@@ -10,7 +10,7 @@ on:
 
 jobs:
   call-workflow-deploy:
-    uses: ./.github/workflows/deploy-to-server.yaml
+    uses: ./.github/workflows/deploy-to-server.yml
 
   upload-release:
     runs-on: ubuntu-latest
