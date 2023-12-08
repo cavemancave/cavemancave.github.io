@@ -2,7 +2,7 @@
 
 
 TB/T 3504-2018 列车接近预警地面设备
-手机注册登录后可以看到全文
+https://hbba.sacinfo.org.cn/attachment/onlineRead/5904054c34efe2dd71e9d44c009bb725
 https://std.samr.gov.cn/hb/search/stdHBDetailed?id=8B1827F264D5BB19E05397BE0A0AB44A
 使用的是POGSAG编码 调制DFSK(差分频移键控）速率1200bps,
 
