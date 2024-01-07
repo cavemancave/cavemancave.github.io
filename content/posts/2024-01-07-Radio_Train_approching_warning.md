@@ -21,6 +21,6 @@ categories: ["Radio"]
 ![img 1](/images/blog/2024-01-07-pocsagdecoder.png)  
 
 ## 参考
-[《TB/T 3504-2018 列车接近预警地面设备》]: https://hbba.sacinfo.org.cn/attachment/onlineRead/5904054c34efe2dd71e9d44c009bb725
+[《TB/T 3504-2018 列车接近预警地面设备》]: https://hbba.sacinfo.org.cn/attachment/onlineRead/5904054c34efe2dd71e9d44c009bb725  
 [北京世纪东方智汇科技股份有限公司 公开转让说明书1-1-138]: https://www.neeq.com.cn/disclosure/2022/2022-08-15/1660534210_098980.pdf  
-[Dustify/SdrSharpPocsagPlugin]: https://github.com/Dustify/SdrSharpPocsagPlugin
+[Dustify/SdrSharpPocsagPlugin]: https://github.com/Dustify/SdrSharpPocsagPlugin  
