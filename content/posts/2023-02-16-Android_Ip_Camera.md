@@ -1,6 +1,6 @@
 ---
 title: "废旧安卓折腾记录-网络摄像头"
-date: 2023-02-116T13:07:27Z
+date: 2023-02-16T13:07:27Z
 draft: false
 tags: ["stream", "ipcam", "android", "rtsp", "mi6"]
 series: ["废旧安卓折腾记录"]
