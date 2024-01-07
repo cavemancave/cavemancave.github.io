@@ -1,6 +1,6 @@
 ---
 title: "列车接近预警"
-date: 2023-01-07T17:07:27Z
+date: 2024-01-07T17:07:27Z
 draft: false
 tags: ["radio", "ham", "sdr", "train"]
 series: ["Radio"]
@@ -15,13 +15,12 @@ categories: ["Radio"]
 
 ## 安装SDRSharp
 ## 安装POGSAG插件
-[Dustify/SdrSharpPocsagPlugin][]
+[Dustify/SdrSharpPocsagPlugin][]  
 ## 安装天线
 ## 解码
-
+![img 1](/images/blog/2024-01-07-pocsagdecoder.png)  
 
 ## 参考
 [《TB/T 3504-2018 列车接近预警地面设备》]: https://hbba.sacinfo.org.cn/attachment/onlineRead/5904054c34efe2dd71e9d44c009bb725
-[北京世纪东方智汇科技股份有限公司 公开转让说明书1-1-138]: https://std.samr.gov.cn/hb/search/stdHBDetailed?id=8B1827F264D5BB19E05397BE0A0AB44A "《TB/T 3504-2018 列车接近预警地面设备》"
-(https://www.neeq.com.cn/disclosure/2022/2022-08-15/1660534210_098980.pdf
+[北京世纪东方智汇科技股份有限公司 公开转让说明书1-1-138]: https://www.neeq.com.cn/disclosure/2022/2022-08-15/1660534210_098980.pdf  
 [Dustify/SdrSharpPocsagPlugin]: https://github.com/Dustify/SdrSharpPocsagPlugin

@@ -18,10 +18,15 @@ github新建仓库image
 提交  
 以后换服务器克隆记得要下载子模块  
 `git clone --recurse-submodules git@github.com:cavemancave/cavemancave.github.io.git`  
+如果忘记带参数了，可以在clone后init子仓库
+`git submodule update --init`
 如果子仓库远端更新了，需要在本地也更新下  
 `git submodule update --recursive --remote`  
 主仓和子仓一起更新也可以使用  
 `git pull --recurse-submodules`  
+
+# 引用图片
+`![img 1](/images/blog/Test.png) `  
 
 # 待做
 自建图床  
