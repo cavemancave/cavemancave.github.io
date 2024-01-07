@@ -25,6 +25,13 @@ github新建仓库image
 主仓和子仓一起更新也可以使用  
 `git pull --recurse-submodules`  
 
+配置别名
+```
+git config alias.sdiff '!'"git diff && git submodule foreach 'git diff'"
+git config alias.spush 'push --recurse-submodules=on-demand'
+git config alias.supdate 'submodule update --remote --merge'
+```
+
 # 引用图片
 `![img 1](/images/blog/Test.png) `  
 
