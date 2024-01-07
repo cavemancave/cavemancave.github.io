@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>android on cavemancave</title><link>https://cavemancave.github.io/tags/android/</link><description>Recent content in android on cavemancave</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 16 Feb 2023 13:07:27 +0000</lastBuildDate><atom:link href="https://cavemancave.github.io/tags/android/index.xml" rel="self" type="application/rss+xml"/><item><title>废旧安卓折腾记录-网络摄像头</title><link>https://cavemancave.github.io/posts/2023-02-16-android_ip_camera/</link><pubDate>Thu, 16 Feb 2023 13:07:27 +0000</pubDate><guid>https://cavemancave.github.io/posts/2023-02-16-android_ip_camera/</guid><description>设备 Link to heading Xiaomi Mi 6
+LineageOS 20
+App Link to heading 目前为止，测试到最好用的一个App是Google Play - Astra Streaming Studio
+它支持RTSP, RTMP, SRT, You Tube, Recoder 5种串流方式
+本次测试使用RTSP协议，RTSP是大部分摄像头支持的格式，兼容更好。
+设置步骤：右上角网络图标-》Add Service-》RTSP-&amp;gt;Name: RTSP-&amp;gt;Name: RTSP-&amp;gt;Port:5554-&amp;gt;OK-&amp;gt;右上角播放图标-》左上角info图标可以看到地址192.168.0.30:5554
+本地PC安装VLC，媒体-》打开网络串流-》rtsp://192.168.0.30:5554-&amp;gt;播放
+测试码率和帧率如下
+Xiaomi Mi 6 LineageOS 20 Video encoder: H264 1280x720 17.2 fps Audio encoder: AAC 44kHz stereo Encoders bitrate: 2.9 Mbps / 2.4 Mbps Outgoing bandwidth: 2.9 Mbps Sent data: 54.5 Mb Duration: 2 min. 40 sec. Xiaomi Mi 10 Lite Zoom MIUI 13 Video encoder: H264 1920x1080 30.</description></item></channel></rss>

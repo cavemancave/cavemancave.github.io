@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>两人一机折腾记录 on cavemancave</title><link>https://cavemancave.github.io/series/%E4%B8%A4%E4%BA%BA%E4%B8%80%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/</link><description>Recent content in 两人一机折腾记录 on cavemancave</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 03 May 2023 19:06:47 +0000</lastBuildDate><atom:link href="https://cavemancave.github.io/series/%E4%B8%A4%E4%BA%BA%E4%B8%80%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml"/><item><title>折腾记录-两人一机</title><link>https://cavemancave.github.io/posts/2023-05-03-all_in_one/</link><pubDate>Wed, 03 May 2023 19:06:47 +0000</pubDate><guid>https://cavemancave.github.io/posts/2023-05-03-all_in_one/</guid><description>简介 Link to heading 我经常用电脑折腾，老婆偶尔用电脑加班，买2台电脑的话，有一台会经常闲置，而且如果2个电脑配置都想高一点的话也会很贵，所以想在电脑上再开一个虚拟机给她用。第一种方案是安装ASTER软件来驱动另一个屏幕和键鼠，但是这个软件好像不更新了，原理不太清楚，也容易黑屏啥的，就没有尝试。第二种是安装PVE或者unraid系统，在其上，再安装虚拟机，将usb和显卡分表直通到不同的虚拟机中，就可以实现一机多用了，而且还可以继续安装黑群晖，OpenWrt等系统，这个方向有个专门的圈子叫All in one, 简称AIO, 尝试的人多，资料也多，所以尝试这个方向。
+硬件 Link to heading 主板：华硕(ASUS)TUF B360M-PLUS GS
+CPU: i5-8600K
+核显：HD640
+显卡：GTX 1660
+内存：DDR4 2666 三根 8GB + 16GB + 16GB
+硬盘：1TB(Windows) + SSD 500GB (PVE) + SSD 500GB(Ubuntu)
+原来主力系统是Windows，里面通过hyperV安装ubuntu系统有时折腾用，这次新购的是1根16GB内存和500GB硬盘，这样三个系统可以独立启动。
+安装过程 Link to heading 主要参考两人一机的搭建方案 和 [官方直通说明]（https://pve.proxmox.com/wiki/PCI_Passthrough），虚拟机都是按EFI模式创建的，pci直通后，primary gpu先不选，然后用console进去，更新一波驱动，然后primary gpu勾上，重启后就可以独占屏幕了。
+但是windows系统只能使用独显，核显总是碰到code 43的问题，参考很多帖子还未解决，还剩dump rom的操作还未尝试。最近折腾图像识别需要用到CUDA，所以也需要独显，pve系统暂时放弃。
+vi /etc/default/grub update-grub vi /etc/modules update-initramfs -u -k all dmesg |grep -e DMAR -e IOMMU -e AMD-Vi lsmod |grep vfio echo &amp;#34;options kvm ignore_msrs=1&amp;#34; &amp;gt; /etc/modprobe.</description></item></channel></rss>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>git-submodule on cavemancave</title><link>https://cavemancave.github.io/tags/git-submodule/</link><description>Recent content in git-submodule on cavemancave</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 18 Nov 2022 13:07:27 +0000</lastBuildDate><atom:link href="https://cavemancave.github.io/tags/git-submodule/index.xml" rel="self" type="application/rss+xml"/><item><title>博客搭建记录-添加图片</title><link>https://cavemancave.github.io/posts/2022-11-18-how_to_add_picture_to_blog/</link><pubDate>Fri, 18 Nov 2022 13:07:27 +0000</pubDate><guid>https://cavemancave.github.io/posts/2022-11-18-how_to_add_picture_to_blog/</guid><description>方案选择 Link to heading 保存位置：图床，github仓库，服务器自建图床
+公开图床都存在不稳定的问题，可能使用一段时间后就不再提供服务，github仓库也有断供风险，即使使用也要备份到自己服务器上，自建图床应该是比较好的选择，不过目前暂时没有时间弄，先使用上传到github仓库再备份到服务器上的方案
+图片子仓库 Link to heading git历史记录中会保存删除和修改的图片文件，后期会逐渐膨胀，虽然有方法处理，不过还未研究，先建立子仓库存储，避免污染博客仓库
+github新建仓库image
+博客仓库中新增image目录
+博客仓库添加子模块 git submodule add &amp;lt;url&amp;gt; &amp;lt;path&amp;gt;
+提交
+以后换服务器克隆记得要下载子模块
+git clone --recurse-submodules git@github.com:cavemancave/cavemancave.github.io.git
+如果忘记带参数了，可以在clone后init子仓库 git submodule update --init 如果子仓库远端更新了，需要在本地也更新下
+git submodule update --recursive --remote
+主仓和子仓一起更新也可以使用
+git pull --recurse-submodules
+配置别名
+git config alias.sdiff &amp;#39;!&amp;#39;&amp;#34;git diff &amp;amp;&amp;amp; git submodule foreach &amp;#39;git diff&amp;#39;&amp;#34; git config alias.spush &amp;#39;push --recurse-submodules=on-demand&amp;#39; git config alias.supdate &amp;#39;submodule update --remote --merge&amp;#39; 引用图片 Link to heading ![img 1](/images/blog/Test.</description></item></channel></rss>

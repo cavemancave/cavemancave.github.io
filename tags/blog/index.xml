@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog on cavemancave</title><link>https://cavemancave.github.io/tags/blog/</link><description>Recent content in blog on cavemancave</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 18 Nov 2022 13:07:27 +0000</lastBuildDate><atom:link href="https://cavemancave.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>博客搭建记录-添加图片</title><link>https://cavemancave.github.io/posts/2022-11-18-how_to_add_picture_to_blog/</link><pubDate>Fri, 18 Nov 2022 13:07:27 +0000</pubDate><guid>https://cavemancave.github.io/posts/2022-11-18-how_to_add_picture_to_blog/</guid><description>方案选择 Link to heading 保存位置：图床，github仓库，服务器自建图床
+公开图床都存在不稳定的问题，可能使用一段时间后就不再提供服务，github仓库也有断供风险，即使使用也要备份到自己服务器上，自建图床应该是比较好的选择，不过目前暂时没有时间弄，先使用上传到github仓库再备份到服务器上的方案
+图片子仓库 Link to heading git历史记录中会保存删除和修改的图片文件，后期会逐渐膨胀，虽然有方法处理，不过还未研究，先建立子仓库存储，避免污染博客仓库
+github新建仓库image
+博客仓库中新增image目录
+博客仓库添加子模块 git submodule add &amp;lt;url&amp;gt; &amp;lt;path&amp;gt;
+提交
+以后换服务器克隆记得要下载子模块
+git clone --recurse-submodules git@github.com:cavemancave/cavemancave.github.io.git
+如果忘记带参数了，可以在clone后init子仓库 git submodule update --init 如果子仓库远端更新了，需要在本地也更新下
+git submodule update --recursive --remote
+主仓和子仓一起更新也可以使用
+git pull --recurse-submodules
+配置别名
+git config alias.sdiff &amp;#39;!&amp;#39;&amp;#34;git diff &amp;amp;&amp;amp; git submodule foreach &amp;#39;git diff&amp;#39;&amp;#34; git config alias.spush &amp;#39;push --recurse-submodules=on-demand&amp;#39; git config alias.supdate &amp;#39;submodule update --remote --merge&amp;#39; 引用图片 Link to heading ![img 1](/images/blog/Test.</description></item><item><title>如何将Github Pages构建结果部署到自己的服务器上</title><link>https://cavemancave.github.io/posts/2022-11-11-how_to_deploy_pages_web_to_own_server/</link><pubDate>Fri, 11 Nov 2022 13:07:27 +0000</pubDate><guid>https://cavemancave.github.io/posts/2022-11-11-how_to_deploy_pages_web_to_own_server/</guid><description>如何将github pages构建结果部署到自己的服务器上 Link to heading 简述 Link to heading github pages默认会有一个Actions: pages-build-deployment, 观察源码发现此action会执行jekyll build构建出_site目录，只要把这个目录同步到自己的服务器上，再拉起http服务，就可以在自己的服务器上看到静态网页了，同步目录使用rsync命令，因为scp或者sftp每次都会重复拷贝，比较耗时
+步骤： Link to heading 服务器安装rsync 准备服务器的密钥登录 ssh-key-gen生成秘钥 ssh-copy-id user@serverIp拷贝到服务器 cat ~/.ssh/id_rsa 查看私钥 添加Secerts
+项目页 -&amp;gt; Settings -&amp;gt; Security -&amp;gt; Secrets -&amp;gt; Actions -&amp;gt; New repository secret添加4个密文 DC_HOST 是服务器域名或者地址 DC_PORT 是ssh登录服务器的端口 DC_USER 是ssh登录服务器的用户名 DC_PASS 是ssh登录服务器的私钥
+添加Action 参考代码 Link to heading # Sample workflow for building and deploying a Jekyll site to GitHub Pages name: Deploy Jekyll site to my own server on: # Runs on pushes targeting the default branch push: branches: [&amp;#34;main&amp;#34;] # Allows you to run this workflow manually from the Actions tab workflow_dispatch: jobs: rsync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 - name: Setup Pages uses: actions/configure-pages@v2 - name: Build with Jekyll uses: actions/jekyll-build-pages@v1 with: source: .</description></item></channel></rss>

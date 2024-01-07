@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>git on cavemancave</title><link>https://cavemancave.github.io/tags/git/</link><description>Recent content in git on cavemancave</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 08 Jul 2023 17:07:27 +0000</lastBuildDate><atom:link href="https://cavemancave.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>nginx搭建http文件下载服务</title><link>https://cavemancave.github.io/posts/2023-07-08-nginx_file_server/</link><pubDate>Sat, 08 Jul 2023 17:07:27 +0000</pubDate><guid>https://cavemancave.github.io/posts/2023-07-08-nginx_file_server/</guid><description>配置文件 Link to heading NAS创建文件夹
+/home/nginx 放网站文件
+/home/nginx/file 共享的文件放这里
+/home/config/nginx/default.conf, 内容如下:
+#/etc/nginx/conf.d/default.conf server { listen *:8119; root /nginx; location / { index index.html index.php; } location /file/ { autoindex on; } } docker映射 Link to heading 创建docker， 映射目录
+/home/config/nginx/default.conf =&amp;gt; /etc/nginx/conf.d/default.conf
+/home/nginx/ =&amp;gt; /nginx/
+访问 Link to heading 访问 http://192.168.0.x:8119/file就可以直接下载文件了</description></item><item><title>代理折腾记录 - git proxy</title><link>https://cavemancave.github.io/posts/2023-05-19-setup_proxy_git/</link><pubDate>Fri, 19 May 2023 17:07:27 +0000</pubDate><guid>https://cavemancave.github.io/posts/2023-05-19-setup_proxy_git/</guid><description> 配置 Link to heading 需要先在本地配置启动好socks代理和http代理，我用的是trojan-go和privoxy，然后
+# 配置http代理 git config --global http.proxy &amp;#34;http://127.0.0.1:8118&amp;#34; # 配置socks代理 git config --global core.gitproxy &amp;#34;socks5://127.0.0.1:1080&amp;#34; # 查看配置 git config --global -l</description></item></channel></rss>
