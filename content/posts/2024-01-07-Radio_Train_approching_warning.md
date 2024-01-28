@@ -14,6 +14,10 @@ categories: ["Radio"]
 >2006 年工业和信息化部发布《关于同意铁道部列车安全预警系统使用频率的函》（信部无函（2006）35 号），同意在全国铁路范围内运用的行车车辆安全预警系统使用821.2375/866.2375MHz 频率。
 
 ## 安装SDRSharp
+参考快速开始指南[rtl-sdr-quick-start-guide][]<br>
+增益调到最大，使用NFM模式，带宽15kHz或者25kHz，忘了哪个了，可以在瀑布图上看到DFSK的形状  
+https://www.datahoards.com/wp-content/uploads/2021/04/SDRSharp-1024x552.png  
+接收航空对将可以设置为USB模式  
 
 ## 安装POGSAG插件
 [Dustify/SdrSharpPocsagPlugin][]<br>
@@ -28,6 +32,7 @@ categories: ["Radio"]
 
 ## 参考
 [rtl-sdr v4]: https://www.rtl-sdr.com/v4/ "rtl-sdr v4"
+[rtl-sdr-quick-start-guide]: https://www.rtl-sdr.com/rtl-sdr-quick-start-guide/ "rtl-sdr quick start guide"
 [《TB/T 3504-2018 列车接近预警地面设备》]: https://hbba.sacinfo.org.cn/attachment/onlineRead/5904054c34efe2dd71e9d44c009bb725
 [《北京世纪东方智汇科技股份有限公司 公开转让说明书》]: https://www.neeq.com.cn/disclosure/2022/2022-08-15/1660534210_098980.pdf
 [Dustify/SdrSharpPocsagPlugin]: https://github.com/Dustify/SdrSharpPocsagPlugin
