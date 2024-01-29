@@ -15,9 +15,9 @@ categories: ["Radio"]
 
 ## 安装SDRSharp
 参考快速开始指南[rtl-sdr-quick-start-guide][]<br>
-增益调到最大，使用NFM模式，带宽15kHz或者25kHz，忘了哪个了，可以在瀑布图上看到DFSK的形状  
-https://www.datahoards.com/wp-content/uploads/2021/04/SDRSharp-1024x552.png  
-接收航空对将可以设置为USB模式  
+增益调到最大，使用NFM模式，带宽15kHz或者25kHz，忘了哪个了，可以在瀑布图上看到典型的DFSK波形的形状  
+![DFSK](https://www.datahoards.com/wp-content/uploads/2021/04/SDRSharp-1024x552.png)  
+接收航空对讲可以设置为USB模式   
 
 ## 安装POGSAG插件
 [Dustify/SdrSharpPocsagPlugin][]<br>
