@@ -1,6 +1,3 @@
-[submodule "images"]
-	path = images
-	url = git@github.com:cavemancave/images.git
 [submodule "static/images"]
 	path = static/images
 	url = git@github.com:cavemancave/images.git
