@@ -1,6 +1,6 @@
 [submodule "static/images"]
 	path = static/images
-	url = git@github.com:cavemancave/images.git
+	url = https://github.com/cavemancave/images.git
 [submodule "themes/hugo-coder"]
 	path = themes/hugo-coder
-	url = git@github.com:cavemancave/hugo-coder.git
+	url = https://github.com/cavemancave/hugo-coder.git
