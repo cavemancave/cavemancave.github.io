@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>openwrt on cavemancave</title><link>https://cavemancave.github.io/tags/openwrt/</link><description>Recent content in openwrt on cavemancave</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 17 Dec 2022 13:07:27 +0000</lastBuildDate><atom:link href="https://cavemancave.github.io/tags/openwrt/index.xml" rel="self" type="application/rss+xml"/><item><title>OpenWrt折腾记录</title><link>https://cavemancave.github.io/posts/2022-12-17-openwrt/</link><pubDate>Sat, 17 Dec 2022 13:07:27 +0000</pubDate><guid>https://cavemancave.github.io/posts/2022-12-17-openwrt/</guid><description>简介 Link to heading 记录本次OpenWrt作为旁路由配置过程。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>openwrt on cavemancave</title><link>https://cavemancave.github.io/tags/openwrt/</link><description>Recent content in openwrt on cavemancave</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 13 May 2024 17:07:27 +0000</lastBuildDate><atom:link href="https://cavemancave.github.io/tags/openwrt/index.xml" rel="self" type="application/rss+xml"/><item><title>OpenWrt恢复</title><link>https://cavemancave.github.io/posts/2024-05-13-openwrtrecover/</link><pubDate>Mon, 13 May 2024 17:07:27 +0000</pubDate><guid>https://cavemancave.github.io/posts/2024-05-13-openwrtrecover/</guid><description>参考https://openwrt.org/docs/guide-user/troubleshooting/failsafe_and_factory_reset
+启动时指示灯有三种状态：
+黄色常亮bootbloader
+黄色快闪（1秒5次） 等待输入
+如果按下reset， 进入了failsafe模式，闪更快（1秒10次）
+如果没按下，进入正常启动，闪更慢（1秒2次）
+所以我在快闪的时候按了reset键，然后进入了failsafe模式，然后找根网线连接lan口和电脑，手动设置电脑ip为192.168.1.2， 然后ssh root@192.168.1.1，然后就进去了，然后执行firstboot，再reboot
+然后等好几分钟，等待重启
+然后网页就可以登录192.168.1.1了。
+然后Network-&amp;gt;Interfaces-可以看到LAN接口的Mac 地址，到上一级的路由器中配置固定的ip地址192.168.0.8。
+然后Network-&amp;gt;Interfaces-&amp;gt;LAN-&amp;gt;General Settings 页中的 Protocol 改成DHCP client, DHCP Server 页中的General Setup 中的IgnoreInterface 勾上，然后应用修改重启。
+然后再登录192.168.0.8 就可以继续配置wifi了</description></item><item><title>OpenWrt折腾记录</title><link>https://cavemancave.github.io/posts/2022-12-17-openwrt/</link><pubDate>Sat, 17 Dec 2022 13:07:27 +0000</pubDate><guid>https://cavemancave.github.io/posts/2022-12-17-openwrt/</guid><description>简介 Link to heading 记录本次OpenWrt作为旁路由配置过程。
 硬件是小米路由器4A千兆版，固件是OpenWrt 21.02.2，家中的网络拓扑是光纤后一个主路由负责DHCP和防火墙，客厅，主卧，书房各一个路由器负责wifi接入。从路由器都设置成中继模式，保证家中设备都在一个局域网内。
 wifi同名，开启802.11r/802.11w，保证wifi可以快速漫游。
 目前在NAS上长期运行着代理客户端，并向局域网提供socks和http代理，局域网内部分设备设置代理服务器为NAS地址，经NAS代理出海。
