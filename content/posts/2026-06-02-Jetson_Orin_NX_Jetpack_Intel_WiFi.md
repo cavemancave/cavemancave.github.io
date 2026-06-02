@@ -1,6 +1,6 @@
 ---
 title: "Jetson Orin NX Jetpack 6.1 安装 Intel WiFi 驱动"
-date: 2026-06-02T00:00:00Z
+date: 2026-06-02T10:00:00+08:00
 draft: false
 tags: ["jetson", "jetpack", "wifi", "driver", "intel"]
 categories: ["Setup"]
